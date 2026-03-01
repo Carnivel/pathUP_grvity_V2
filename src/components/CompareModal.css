@@ -1,0 +1,272 @@
+/* Compare Modal Overlay */
+.compare-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-xl);
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+.compare-modal-container {
+    background: var(--color-surface);
+    width: 100%;
+    max-width: 1200px;
+    height: 90vh;
+    /* Max height */
+    border-radius: var(--radius-xl);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Modal Header */
+.compare-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-xl);
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface);
+}
+
+.compare-modal-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0;
+}
+
+.btn-close-modal {
+    background: rgba(244, 63, 94, 0.1);
+    color: var(--color-accent);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.btn-close-modal:hover {
+    background: rgba(244, 63, 94, 0.2);
+    transform: rotate(90deg);
+}
+
+/* Table Wrapper for Scrolling */
+.compare-table-wrapper {
+    flex: 1;
+    overflow: auto;
+    /* Allow scrolling within the modal body */
+    padding: 0;
+    background: var(--color-bg);
+}
+
+/* Compare Table */
+.compare-table {
+    width: 100%;
+    min-width: 800px;
+    /* Force scroll on small screens */
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.compare-table th,
+.compare-table td {
+    padding: var(--spacing-lg);
+    border: 1px solid var(--color-border);
+    text-align: left;
+    vertical-align: top;
+}
+
+.compare-table th {
+    background: var(--color-surface);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 1px 0 var(--color-border);
+}
+
+/* Feature Labels Column */
+.feature-col {
+    width: 200px;
+    background: #f8fafc !important;
+    /* Slightly distinct background */
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    position: sticky;
+    left: 0;
+    z-index: 20 !important;
+    border-right: 2px solid var(--color-primary-light) !important;
+}
+
+.feature-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    background: #f8fafc;
+    position: sticky;
+    left: 0;
+    z-index: 5;
+    border-right: 2px solid var(--color-primary-light) !important;
+}
+
+/* College Headers */
+.college-header-col {
+    width: calc((100% - 200px) / var(--col-count, 2));
+    background: var(--color-surface);
+}
+
+.college-header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    gap: 0.8rem;
+}
+
+.btn-remove-college {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: white;
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-fast);
+}
+
+.btn-remove-college:hover {
+    color: #ef4444;
+    border-color: #ef4444;
+}
+
+.college-logo-placeholder {
+    width: 64px;
+    height: 64px;
+    background: rgba(79, 70, 229, 0.05);
+    border: 1px solid rgba(79, 70, 229, 0.1);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.college-header-content h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Table Data Cells */
+.compare-table td {
+    background: var(--color-surface);
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.type-badge.inline {
+    background: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
+}
+
+.type-badge.inline.private {
+    border-color: rgba(139, 92, 246, 0.3);
+    color: #8B5CF6;
+    background: rgba(139, 92, 246, 0.05);
+}
+
+.type-badge.inline.public {
+    border-color: rgba(6, 182, 212, 0.3);
+    color: #06B6D4;
+    background: rgba(6, 182, 212, 0.05);
+}
+
+.rating-value {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(250, 204, 21, 0.1);
+    padding: 0.3rem 0.6rem;
+    border-radius: var(--radius-sm);
+    color: #B45309;
+}
+
+.highlight-fee {
+    font-size: 1.1rem !important;
+    font-weight: 700;
+    color: var(--color-primary) !important;
+}
+
+.tags-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.tags-stack .tag {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+}
+
+/* Responsive Overrides */
+@media (max-width: 768px) {
+    .compare-modal-container {
+        height: 100vh;
+        max-height: 100vh;
+        border-radius: 0;
+    }
+
+    .compare-modal-overlay {
+        padding: 0;
+    }
+
+    .compare-modal-header {
+        padding: var(--spacing-md);
+    }
+}

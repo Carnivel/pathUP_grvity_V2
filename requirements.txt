@@ -1,0 +1,26 @@
+This project is a React application built with Vite. Follow these instructions to run it on a new device.
+
+REQUIREMENTS:
+1. Node.js (which includes npm)
+   - Download and install from: https://nodejs.org/
+   - We recommend installing the "LTS" (Long Term Support) version.
+   
+INSTALLATION:
+1. Open a terminal or command prompt.
+2. Navigate to the folder containing this project.
+3. Run the following command to install all necessary dependencies:
+   npm install
+
+HOW TO RUN LOCALLY:
+Once Node.js is installed and the dependencies are installed (npm install), you have two options to run the website:
+
+Option 1 (Using the shortcut):
+- Simply double-click the "run website.bat" file in the project folder.
+
+Option 2 (Using the terminal):
+- Open a terminal in the project folder.
+- Run the following command:
+  npm run dev
+
+After starting the server, open your web browser and go to:
+http://localhost:5173/
