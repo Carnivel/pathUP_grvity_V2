@@ -1,0 +1,17 @@
+.cardHover {
+  transform: translateY(0);
+}
+
+.cardHover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.1);
+}
+
+/* Optional: hide scrollbar for the category pills container */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

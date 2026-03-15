@@ -1,16 +1,50 @@
-# React + Vite
+# PathUp: Education Discovery Platform (v2.0)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the PathUp repository. This is a robust, full-stack application designed to help users discover courses and colleges.
 
-Currently, two official plugins are available:
+## 🏗️ Architecture Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+PathUp is built using a modern, scalable architecture:
 
-## React Compiler
+1.  **Backend (API):** Django / Django REST Framework (DRF)
+2.  **Frontend:** Next.js (App Router)
+3.  **Search:** Meilisearch (High-performance search engine)
+4.  **Task Queue:** Celery (Background task processing)
+5.  **Cache/Broker:** Redis (backed by Memurai on Windows)
+6.  **Periodic Tasks:** Celery Beat (Scheduled indexing and maintenance)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Quick Start (Windows)
 
-## Expanding the ESLint configuration
+The repository includes a convenience script to launch all 6 core services simultaneously.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1.  **Ensure Requirements are Installed:** (See [requirements.txt](file:///c:/Users/anandhu/pathupu_test_antigravity/requirements.txt) for download links).
+    - Node.js & Python
+    - Memurai (Redis compatible)
+    - Meilisearch executable in `pathup_backend/`
+2.  **Install Dependencies:**
+    ```bash
+    # Frontend
+    cd next_frontend && npm install
+    
+    # Backend
+    cd pathup_backend
+    pip install -r requirements.txt
+    pip install celery redis gevent
+    ```
+3.  **Run the Website:**
+    - Double-click `run website.bat` in the root directory.
+    - Six terminal windows will open, each managing a specific service.
+
+## 🛠️ Components
+
+### [pathup_backend](file:///c:/Users/anandhu/pathupu_test_antigravity/pathup_backend)
+Contains the Django API, database models, and background task logic.
+- **Port:** 8000
+- **Admin:** `/admin`
+
+### [next_frontend](file:///c:/Users/anandhu/pathupu_test_antigravity/next_frontend)
+Modern Next.js frontend with SEO optimization and dynamic routing.
+- **Port:** 3000 (standard Next.js)
+
+## 📝 Configuration
+Environment variables and configuration settings for search keys and database connections can be found in the respective directory `.env` files.

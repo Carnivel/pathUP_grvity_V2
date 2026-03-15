@@ -1,26 +1,36 @@
-This project is a React application built with Vite. Follow these instructions to run it on a new device.
+# PathUp Project Architecture v2.0
 
-REQUIREMENTS:
-1. Node.js (which includes npm)
-   - Download and install from: https://nodejs.org/
-   - We recommend installing the "LTS" (Long Term Support) version.
-   
-INSTALLATION:
-1. Open a terminal or command prompt.
-2. Navigate to the folder containing this project.
-3. Run the following command to install all necessary dependencies:
-   npm install
+This project is a full-stack application consisting of a Django (API) backend and a Next.js (React) frontend.
 
-HOW TO RUN LOCALLY:
-Once Node.js is installed and the dependencies are installed (npm install), you have two options to run the website:
+## SYSTEM REQUIREMENTS
+1. Node.js (v18+ LTS recommended)
+   - Download from: https://nodejs.org/
+2. Python (v3.10+ recommended)
+   - Download from: https://www.python.org/
+3. Memurai (Redis for Windows)
+   - Download "Developer Edition" from: https://www.memurai.com/
+4. Meilisearch (Search Engine)
+   - Download Windows executable from: https://github.com/meilisearch/meilisearch/releases/latest
+   - Place `meilisearch.exe` in the `pathup_backend/` directory.
 
-Option 1 (Using the shortcut):
-- Simply double-click the "run website.bat" file in the project folder.
+## INSTALLATION
 
-Option 2 (Using the terminal):
-- Open a terminal in the project folder.
-- Run the following command:
-  npm run dev
+### 1. Frontend Dependencies
+Open a terminal in the root directory and run:
+cd next_frontend && npm install
 
-After starting the server, open your web browser and go to:
-http://localhost:5173/
+### 2. Backend Dependencies
+Open a terminal in the root directory and run:
+cd pathup_backend
+pip install -r requirements.txt
+pip install celery redis gevent
+
+## HOW TO RUN
+The easiest way to start all 6 services (Redis/Memurai, Meilisearch, Django, Celery Worker, Celery Beat, Next.js) is to use the shortcut:
+
+- Double-click the "run website.bat" file in the project root.
+
+## LOCAL URLs
+- Frontend: http://localhost:3000 (or as configured in Next.js)
+- Backend API: http://localhost:8000
+- Django Admin: http://localhost:8000/admin

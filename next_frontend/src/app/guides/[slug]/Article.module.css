@@ -1,0 +1,32 @@
+.prose {
+  color: #374151; /* text-gray-700 */
+  line-height: 1.8;
+  font-size: 1.125rem; /* text-lg */
+}
+
+.prose p {
+  margin-bottom: 1.5em;
+}
+
+.prose strong {
+  color: #111827; /* text-gray-900 */
+  font-weight: 600;
+}
+
+.prose h3 {
+  color: #111827;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+.prose ul {
+  list-style-type: disc;
+  padding-left: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+.prose li {
+  margin-bottom: 0.5em;
+}

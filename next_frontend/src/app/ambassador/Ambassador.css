@@ -1,0 +1,927 @@
+/* ===== Ambassador Page ===== */
+.ambassador-page {
+    background: var(--color-bg);
+}
+
+/* Hero */
+.amb-hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+    padding: 6rem 0 5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.amb-hero::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -15%;
+    width: 650px;
+    height: 650px;
+    background: radial-gradient(circle, rgba(79, 70, 229, 0.18) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.amb-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.amb-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+}
+
+.amb-badge,
+.amb-section-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 1rem;
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+}
+
+.amb-badge {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.amb-section-badge {
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(6, 182, 212, 0.1));
+    color: var(--color-primary);
+}
+
+.amb-hero h1 {
+    font-size: 3.2rem;
+    font-weight: 800;
+    color: white;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+}
+
+.amb-hero-subtitle {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 2rem;
+    max-width: 600px;
+}
+
+.amb-hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.amb-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, var(--color-primary), #7C3AED);
+    color: white;
+    padding: 0.85rem 2rem;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(79, 70, 229, 0.35);
+}
+
+.amb-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(79, 70, 229, 0.45);
+}
+
+.amb-btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: white;
+    padding: 0.85rem 2rem;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.amb-btn-outline:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.amb-hero-trust {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+}
+
+/* Section Center Header */
+.amb-section-center {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+}
+
+.amb-section-center h2 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+}
+
+.amb-section-center p {
+    font-size: 1.05rem;
+    color: var(--color-text-secondary);
+}
+
+/* What Is It */
+.amb-what {
+    padding: 5rem 0;
+    background: white;
+}
+
+.amb-what-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.amb-what-text h2 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+}
+
+.amb-what-text p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--color-text-secondary);
+    margin-bottom: 1rem;
+}
+
+.amb-what-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.amb-visual-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--color-bg);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.amb-visual-card:hover {
+    transform: translateX(8px);
+    box-shadow: var(--shadow-md);
+}
+
+.amb-visual-card div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.amb-visual-card strong {
+    font-size: 1.05rem;
+}
+
+.amb-visual-card span {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+}
+
+.vc-1 {
+    color: var(--color-primary);
+    border-left: 4px solid var(--color-primary);
+}
+
+.vc-2 {
+    color: #D97706;
+    border-left: 4px solid #D97706;
+}
+
+.vc-3 {
+    color: #059669;
+    border-left: 4px solid #059669;
+}
+
+/* Benefits */
+.amb-benefits {
+    padding: 5rem 0;
+    background: var(--color-bg);
+}
+
+.amb-benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.amb-benefit-card {
+    padding: 2rem;
+    background: white;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.amb-benefit-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent);
+}
+
+.amb-benefit-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+}
+
+.amb-benefit-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.5rem;
+}
+
+.amb-benefit-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+}
+
+/* How It Works */
+.amb-how {
+    padding: 5rem 0;
+    background: white;
+}
+
+.amb-steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+.amb-step-card {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    background: var(--color-bg);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border);
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.amb-step-card:hover {
+    transform: translateY(-4px);
+}
+
+.amb-step-number {
+    font-size: 3rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.amb-step-icon {
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.amb-step-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.amb-step-card p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--color-text-secondary);
+}
+
+/* Responsibilities */
+.amb-responsibilities {
+    padding: 5rem 0;
+    background: var(--color-bg);
+}
+
+.amb-resp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.amb-resp-text h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.amb-resp-text p {
+    color: var(--color-text-secondary);
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.amb-resp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.amb-resp-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    background: white;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+
+.amb-resp-item svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* Rewards */
+.amb-rewards {
+    padding: 5rem 0;
+    background: white;
+}
+
+.amb-rewards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.amb-reward-card {
+    padding: 2rem;
+    background: var(--color-bg);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border);
+    transition: transform 0.3s ease;
+}
+
+.amb-reward-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+}
+
+.amb-reward-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.amb-reward-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.amb-reward-tier {
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.amb-reward-desc {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.amb-reward-value {
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.amb-reward-note {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    background: rgba(79, 70, 229, 0.06);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(79, 70, 229, 0.15);
+    color: var(--color-primary);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.amb-reward-note p {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+}
+
+/* Eligibility */
+.amb-eligibility {
+    padding: 5rem 0;
+    background: var(--color-bg);
+}
+
+.amb-elig-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.amb-elig-text h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.amb-elig-text p {
+    color: var(--color-text-secondary);
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.amb-elig-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.amb-elig-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.85rem 1.25rem;
+    background: white;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+}
+
+.amb-elig-item svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* Tools */
+.amb-tools {
+    padding: 5rem 0;
+    background: white;
+}
+
+.amb-tools-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.amb-tool-card {
+    padding: 1.75rem;
+    background: var(--color-bg);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.amb-tool-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.amb-tool-icon {
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+}
+
+.amb-tool-card h4 {
+    font-size: 1.05rem;
+    margin-bottom: 0.4rem;
+}
+
+.amb-tool-card p {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+}
+
+/* Application Form */
+.amb-apply {
+    padding: 5rem 0;
+    background: var(--color-bg);
+}
+
+.amb-apply-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 3rem;
+    background: white;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+}
+
+.amb-apply-info {
+    padding: 3rem;
+    background: linear-gradient(135deg, #0f172a, #1e1b4b);
+    color: white;
+}
+
+.amb-apply-info .amb-section-badge {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.amb-apply-info h2 {
+    font-size: 1.8rem;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.amb-apply-info>p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.amb-apply-perks {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.amb-apply-perk {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+}
+
+.amb-apply-form-wrap {
+    padding: 3rem;
+}
+
+/* Form */
+.amb-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.amb-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+}
+
+.amb-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.amb-form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.amb-form-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.amb-form-group input,
+.amb-form-group select,
+.amb-form-group textarea {
+    padding: 0.75rem 1rem;
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    background: var(--color-bg);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+    font-family: inherit;
+}
+
+.amb-form-group input:focus,
+.amb-form-group select:focus,
+.amb-form-group textarea:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.amb-form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.amb-submit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, var(--color-primary), #7C3AED);
+    color: white;
+    padding: 0.9rem 2rem;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(79, 70, 229, 0.3);
+    margin-top: 0.5rem;
+}
+
+.amb-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(79, 70, 229, 0.45);
+}
+
+.amb-form-success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    gap: 1rem;
+}
+
+.amb-form-success h3 {
+    font-size: 1.5rem;
+    color: #059669;
+}
+
+.amb-form-success p {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    max-width: 400px;
+    line-height: 1.6;
+}
+
+/* FAQ */
+.amb-faq {
+    padding: 5rem 0;
+    background: white;
+}
+
+.amb-faq-list {
+    max-width: 750px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.amb-faq-item {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--color-bg);
+    transition: border-color 0.3s ease;
+}
+
+.amb-faq-item.open {
+    border-color: var(--color-primary-light);
+}
+
+.amb-faq-q {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.15rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    gap: 1rem;
+}
+
+.amb-faq-chevron {
+    color: var(--color-text-secondary);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.amb-faq-item.open .amb-faq-chevron {
+    transform: rotate(180deg);
+    color: var(--color-primary);
+}
+
+.amb-faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.35s ease;
+    padding: 0 1.5rem;
+}
+
+.amb-faq-item.open .amb-faq-a {
+    max-height: 300px;
+    padding: 0 1.5rem 1.25rem;
+}
+
+.amb-faq-a p {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+}
+
+/* Closing CTA */
+.amb-closing {
+    padding: 5rem 0;
+    background: var(--color-bg);
+}
+
+.amb-closing-card {
+    background: linear-gradient(135deg, #0f172a, #1e1b4b);
+    border-radius: var(--radius-xl);
+    padding: 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.amb-closing-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -25%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.amb-closing-content {
+    position: relative;
+    z-index: 1;
+}
+
+.amb-closing-content h2 {
+    font-size: 2.2rem;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.amb-closing-content p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+.amb-closing-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Responsive */
+@media screen and (max-width: 992px) {
+    .amb-hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .amb-what-grid,
+    .amb-resp-grid,
+    .amb-elig-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .amb-benefits-grid,
+    .amb-rewards-grid,
+    .amb-tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .amb-steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .amb-apply-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .amb-apply-info {
+        padding: 2.5rem;
+    }
+
+    .amb-apply-form-wrap {
+        padding: 2.5rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .amb-hero {
+        padding: 4rem 0 3rem;
+    }
+
+    .amb-hero h1 {
+        font-size: 2rem;
+    }
+
+    .amb-hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .amb-hero-trust {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .amb-benefits-grid,
+    .amb-rewards-grid,
+    .amb-tools-grid,
+    .amb-steps-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .amb-section-center h2 {
+        font-size: 1.7rem;
+    }
+
+    .amb-form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .amb-closing-card {
+        padding: 2.5rem 1.5rem;
+    }
+
+    .amb-closing-content h2 {
+        font-size: 1.6rem;
+    }
+}

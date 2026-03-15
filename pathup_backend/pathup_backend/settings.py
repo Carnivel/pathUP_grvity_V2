@@ -11,6 +11,14 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+from sentry_sdk.integrations.celery import CeleryIntegration
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -84,7 +92,22 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': '2006',
         'HOST': 'localhost',
-        'PORT': '3306',
+    }
+}
+
+CACHE_TTL = 60 * 60  # 1 hour
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "KEY_PREFIX": "pathup",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "CONNECTION_POOL_KWARGS": {"max_connections": 100},
+            "IGNORE_EXCEPTIONS": True,
+            "COMPRESSOR": "django_redis.compressors.zlib.ZlibCompressor",
+        }
     }
 }
 
@@ -130,3 +153,90 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# Meilisearch Settings
+MEILISEARCH_URL = os.environ.get('MEILISEARCH_URL', 'http://127.0.0.1:7700')
+MEILISEARCH_MASTER_KEY = os.environ.get('MEILISEARCH_MASTER_KEY', 'default_key')
+
+# Celery Settings
+CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL', 'redis://127.0.0.1:6379/0')
+CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND', 'redis://127.0.0.1:6379/2')
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+
+# Celery Worker Safety Controls
+CELERY_TASK_SOFT_TIME_LIMIT = 120
+CELERY_TASK_TIME_LIMIT = 300
+CELERY_WORKER_MAX_TASKS_PER_CHILD = 100
+CELERY_WORKER_CONCURRENCY = 4
+CELERY_TASK_ACKS_LATE = True
+
+# Queue Management
+CELERY_TASK_ROUTES = {
+    'colleges.tasks.*': {'queue': 'search_indexing'},
+}
+
+from celery.schedules import crontab
+
+# Periodic Task Scheduling (Celery Beat)
+CELERY_BEAT_SCHEDULE = {
+    'update-trending-rankings': {
+        'task': 'colleges.tasks.calculate_trending_scores',
+        'schedule': crontab(minute=0, hour='*/6'), # Every 6 hours
+        'options': {'queue': 'search_indexing'}
+    },
+    'precompute-seo-aggregates': {
+        'task': 'colleges.tasks.precompute_seo_aggregates',
+        'schedule': crontab(minute=30, hour='*/6'), # Every 6 hours (offset by 30 mins)
+        'options': {'queue': 'search_indexing'}
+    },
+}
+
+# Global DRF Throttles
+REST_FRAMEWORK = {
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '100/day',
+        'user': '1000/day'
+    }
+}
+
+# Sentry Monitoring
+if os.environ.get("SENTRY_DSN"):
+    sentry_sdk.init(
+        dsn=os.environ.get("SENTRY_DSN"),
+        integrations=[
+            DjangoIntegration(),
+            CeleryIntegration(),
+        ],
+        traces_sample_rate=1.0,
+        send_default_pii=True,
+        enable_tracing=True,
+    )
+
+# Structured JSON Logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'celery_json': {
+            'format': '{"time": "%(asctime)s", "level": "%(levelname)s", "name": "%(name)s", "message": "%(message)s"}',
+        },
+    },
+    'handlers': {
+        'console_json': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'celery_json',
+        },
+    },
+    'loggers': {
+        'celery.task': {
+            'handlers': ['console_json'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
+}

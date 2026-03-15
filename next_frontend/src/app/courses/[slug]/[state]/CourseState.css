@@ -1,0 +1,150 @@
+.course-state-header {
+    background-color: var(--course-color, #4F46E5);
+    color: white;
+    padding: 60px 0 40px;
+    margin-bottom: 40px;
+}
+.course-state-header .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+    transition: color 0.2s;
+}
+.course-state-header .back-btn:hover {
+    color: white;
+}
+.cs-container {
+    display: flex;
+    gap: 30px;
+    padding-bottom: 60px;
+}
+.cs-main {
+    flex: 1;
+}
+.cs-sidebar {
+    width: 320px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.cs-college-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+    transition: box-shadow 0.2s;
+}
+.cs-college-card:hover {
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+.cs-card-header {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+.cs-logo-placeholder {
+    width: 50px;
+    height: 50px;
+    background: #f1f5f9;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cs-card-title h2 {
+    margin: 0 0 5px 0;
+    font-size: 1.25rem;
+    color: #1e293b;
+}
+.cs-location {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+.cs-card-metrics {
+    display: flex;
+    gap: 30px;
+    padding: 15px 0;
+    border-top: 1px solid #f1f5f9;
+    border-bottom: 1px solid #f1f5f9;
+    margin-bottom: 20px;
+}
+.metric {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.m-label {
+    font-size: 0.85rem;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.m-val {
+    font-weight: 600;
+    color: #0f172a;
+}
+.cs-card-actions {
+    display: flex;
+    gap: 15px;
+}
+.cs-btn {
+    flex: 1;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.2s;
+}
+.cs-btn:hover {
+    opacity: 0.9;
+}
+.cs-btn-view {
+    background: #f1f5f9;
+    color: #334155;
+}
+.cs-sidebar-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+}
+.cs-sidebar-card h3 {
+    margin: 0 0 15px 0;
+    font-size: 1.1rem;
+    color: #0f172a;
+}
+.cs-links-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.cs-links-list a {
+    color: #334155;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+.cs-links-list a:hover {
+    color: #2563eb;
+    text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+    .cs-container {
+        flex-direction: column;
+    }
+    .cs-sidebar {
+        width: 100%;
+    }
+}

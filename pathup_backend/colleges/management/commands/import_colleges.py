@@ -1,6 +1,6 @@
 import csv
 from django.core.management.base import BaseCommand
-from colleges.models import College, Course, CollegeCourse
+from colleges.models import College, Course, CollegeCourse, Degree, Specialization, Stream
 from django.db import transaction
 
 class Command(BaseCommand):
@@ -22,29 +22,36 @@ class Command(BaseCommand):
                         # 1. Create or Get the College
                         college, created = College.objects.get_or_create(
                             name=row.get('College Name', '').strip(),
-                            location=row.get('Location', '').strip(),
+                            city=row.get('Location', '').strip(),
+                            state=row.get('Location', '').strip(),
                             defaults={
-                                'description': row.get('Description', ''),
                                 'established_year': int(row['Established Year']) if row.get('Established Year') and row['Established Year'].isdigit() else None,
-                                'university_affiliation': row.get('University Affiliation', ''),
-                                'is_government_or_private': row.get('Type (Govt/Private/Aided)', 'Private'),
+                                'ownership_type': row.get('Type (Govt/Private/Aided)', 'Private'),
                                 'website_url': row.get('Website', ''),
                                 'email': row.get('Email', ''),
                                 'phone_number': row.get('Phone', ''),
-                                'has_hostel': row.get('Has Hostel', '').lower() in ['yes', 'true', '1'],
-                                'has_wifi': row.get('Has Wifi', '').lower() in ['yes', 'true', '1'],
                                 'rating': float(row['Rating']) if row.get('Rating') else None,
                             }
                         )
                         
-                        # 2. Create or Get the Course (So we don't duplicate "Computer Science" 100 times)
+                        stream_name = row.get('Stream (e.g. Engineering)', '').strip()
+                        stream, _ = Stream.objects.get_or_create(name=stream_name if stream_name else "Unknown Array")
+
+                        specialization_name = row.get('Specialization', '').strip()
+                        specialization, _ = Specialization.objects.get_or_create(
+                            name=specialization_name if specialization_name else "Unknown Spec",
+                            defaults={'stream': stream}
+                        )
+
+                        degree_name = row.get('Course Name (e.g. B.Tech)', '').strip()
+                        degree, _ = Degree.objects.get_or_create(name=degree_name if degree_name else "Unknown Degree")
+                        
+                        # 2. Create or Get the Course
                         course, created = Course.objects.get_or_create(
-                            name=row.get('Course Name (e.g. B.Tech)', '').strip(),
-                            specialization=row.get('Specialization', '').strip(),
+                            degree=degree,
+                            specialization=specialization,
                             defaults={
-                                'degree_level': row.get('Degree Level (UG/PG)', 'UG').strip(),
-                                'stream': row.get('Stream (e.g. Engineering)', '').strip(),
-                                'duration_years': int(row['Duration (Years)']) if row.get('Duration (Years)') and row['Duration (Years)'].isdigit() else 4,
+                                'duration_years': float(row['Duration (Years)']) if row.get('Duration (Years)') and row['Duration (Years)'].isdigit() else 4.0,
                             }
                         )
                         
@@ -53,10 +60,9 @@ class Command(BaseCommand):
                             college=college,
                             course=course,
                             defaults={
-                                'total_seats_available': int(row['Total Seats']) if row.get('Total Seats') and row['Total Seats'].isdigit() else None,
-                                'entrance_exam_required': row.get('Entrance Exam', ''),
-                                'tuition_fee': int(row['Tuition Fee']) if row.get('Tuition Fee') and row['Tuition Fee'].isdigit() else 0,
-                                'hostel_fee': int(row['Hostel Fee']) if row.get('Hostel Fee') and row['Hostel Fee'].isdigit() else None,
+                                'seat_intake': int(row['Total Seats']) if row.get('Total Seats') and row['Total Seats'].isdigit() else None,
+                                'tuition_fee': float(row['Tuition Fee']) if row.get('Tuition Fee') and row['Tuition Fee'].isdigit() else 0.0,
+                                'hostel_fee': float(row['Hostel Fee']) if row.get('Hostel Fee') and row['Hostel Fee'].isdigit() else None,
                             }
                         )
                         

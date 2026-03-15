@@ -1,0 +1,4 @@
+College Name,Location,Description,Established Year,University Affiliation,Type (Government/Private/Aided),Website,Email,Phone,Has Hostel (Yes/No),Has Wifi (Yes/No),Rating (0.0 to 5.0),Course Name (e.g. B.Tech),Specialization,Degree Level (UG/PG/Diploma/PhD),Stream (e.g. Engineering/Arts/Management),Duration (Years),Total Seats,Entrance Exam,Tuition Fee (per year),Hostel Fee (per year)
+Sample Govt Engineering College,Trivandrum,"A premier technical institute.",2001,KTU,Government,https://example.edu,info@example.edu,+91-9876543210,Yes,Yes,4.5,B.Tech,Computer Science,UG,Engineering,4,120,KEAM,8500,40000
+Sample Private Arts College,Kochi,"Leading arts and science college.",1995,MG University,Private,https://arts.example.edu,contact@arts.example.edu,+91-1234567890,No,Yes,4.2,BA,Economics,UG,Arts,3,60,None,25000,
+"","",,,,,"","","",,,,"","","",,,,,"",""

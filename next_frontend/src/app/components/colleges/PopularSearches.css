@@ -1,0 +1,122 @@
+.popular-searches-section {
+    padding: var(--spacing-md) 0;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.popular-searches-header {
+    text-align: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.popular-searches-header h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin: 0 0 0.25rem 0;
+}
+
+.popular-searches-header p {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    margin: 0;
+}
+
+.popular-searches-container {
+    position: relative;
+    width: 100%;
+    margin-top: var(--spacing-md);
+}
+
+/* Horizontal Scrolling Container */
+.popular-searches-scroll {
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    padding: 0.5rem 0.25rem 1rem 0.25rem; /* bottom padding for shadow/scroll */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    align-items: center;
+}
+
+.popular-searches-scroll::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+/* Individual Search Chip */
+.popular-search-chip {
+    flex: 0 0 auto; /* Prevent shrinking */
+    background: white;
+    color: var(--color-text-secondary);
+    padding: 0.6rem 1.25rem;
+    border-radius: var(--radius-full);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid var(--color-border);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+.popular-search-chip:hover, 
+.popular-search-chip:focus {
+    background: rgba(79, 70, 229, 0.05); /* very light primary */
+    color: var(--color-primary);
+    border-color: rgba(79, 70, 229, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(79, 70, 229, 0.1);
+    outline: none;
+}
+
+/* Optional: Fading edges to indicate more scrollable content */
+.popular-searches-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 40px;
+    background: linear-gradient(to right, transparent, var(--color-surface));
+    pointer-events: none;
+}
+
+.popular-searches-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    background: linear-gradient(to left, transparent, var(--color-surface));
+    pointer-events: none;
+    z-index: 1; /* Stay above chips */
+}
+
+@media (min-width: 768px) {
+    .popular-searches-section {
+        padding: var(--spacing-lg) 0;
+    }
+    
+    .popular-searches-scroll {
+        /* On larger screens, center it if items fit, otherwise scroll */
+        justify-content: center;
+        flex-wrap: wrap; /* allow wrapping on desktop */
+        overflow-x: visible; /* disable scroll if wrapping */
+        padding-bottom: 0.5rem;
+    }
+
+    .popular-searches-container::after,
+    .popular-searches-container::before {
+        display: none; /* Hide fades if wrapping */
+    }
+    
+    .popular-search-chip {
+        margin-bottom: 0.5rem; /* spacing for wrapped items */
+    }
+}

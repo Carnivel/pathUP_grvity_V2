@@ -22,3 +22,28 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# PathUp Project Specifics
+
+# Django Backend
+pathup_backend/venv/
+pathup_backend/__pycache__/
+pathup_backend/db.sqlite3
+pathup_backend/.env
+pathup_backend/celerybeat-schedule*
+pathup_backend/data.ms/
+pathup_backend/meilisearch.exe
+pathup_backend/dumps/
+pathup_backend/~$*.xlsx
+pathup_backend/*.xlsx
+
+# Next.js Frontend
+next_frontend/.next/
+next_frontend/.env.local
+next_frontend/build_*.txt
+next_frontend/build_*.log
+
+# Root / Misc
+public.zip
+PathUP_Website_Evaluation.txt
+original_colleges_page.jsx
