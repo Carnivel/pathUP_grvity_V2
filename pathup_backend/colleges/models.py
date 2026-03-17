@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from .image_utils import optimize_image
 
 class University(models.Model):
     name = models.CharField(max_length=255, db_index=True)
@@ -209,6 +210,14 @@ class College(models.Model):
                 slug = f"{base_slug}-{counter}"
                 counter += 1
             self.slug = slug
+
+        # Auto-optimize logo: resize to 200x200 square, convert to WebP
+        if self.logo and hasattr(self.logo, 'file'):
+            result = optimize_image(self.logo, max_size=(200, 200), quality=85, is_logo=True)
+            if result:
+                new_name, new_content = result
+                self.logo.save(new_name, new_content, save=False)
+
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -222,6 +231,15 @@ class CollegeImage(models.Model):
 
     class Meta:
         ordering = ['-is_primary', 'id']
+
+    def save(self, *args, **kwargs):
+        # Auto-optimize gallery images: resize to max 1200x800, convert to WebP
+        if self.image and hasattr(self.image, 'file'):
+            result = optimize_image(self.image, max_size=(1200, 800), quality=80, is_logo=False)
+            if result:
+                new_name, new_content = result
+                self.image.save(new_name, new_content, save=False)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"Image for {self.college.name}"
