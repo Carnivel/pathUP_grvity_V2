@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Building, Users, BookOpen, TrendingUp, CheckCircle, GraduationCap, MapPin, Briefcase, Star, FileText, Target, Award, HelpCircle } from 'lucide-react';
+import { Building, Users, BookOpen, TrendingUp, CheckCircle, GraduationCap, MapPin, Briefcase, Star, FileText, Target, Award, HelpCircle, ImageIcon } from 'lucide-react';
 import CollegeHero from '../../../components/college/CollegeHero';
 import CollegeActionStrip from '../../../components/college/CollegeActionStrip';
 import OverviewTab from '../../../components/college/OverviewTab';
@@ -13,6 +13,7 @@ import AdmissionsTab from '../../../components/college/AdmissionsTab';
 import CutoffsTab from '../../../components/college/CutoffsTab';
 import ScholarshipsTab from '../../../components/college/ScholarshipsTab';
 import FAQTab from '../../../components/college/FAQTab';
+import GalleryTab from '../../../components/college/GalleryTab';
 import CollegeSidebar from '../../../components/college/CollegeSidebar';
 import RelatedColleges from '../../../components/college/RelatedColleges';
 
@@ -28,6 +29,7 @@ export default function CollegeDetailClient({ college }) {
         { id: 'placements', label: 'Placements', icon: <TrendingUp size={16} /> },
         { id: 'scholarships', label: 'Scholarships', icon: <Award size={16} /> },
         { id: 'campus', label: 'Campus Life', icon: <Users size={16} /> },
+        { id: 'gallery', label: 'Gallery', icon: <ImageIcon size={16} /> },
         { id: 'reviews', label: 'Reviews', icon: <Star size={16} /> },
         { id: 'faq', label: 'FAQ', icon: <HelpCircle size={16} /> }
     ];
@@ -85,6 +87,7 @@ export default function CollegeDetailClient({ college }) {
                             {activeTab === 'placements' && <PlacementsTab college={college} />}
                             {activeTab === 'scholarships' && <ScholarshipsTab college={college} />}
                             {activeTab === 'campus' && <CampusLifeTab college={college} />}
+                            {activeTab === 'gallery' && <GalleryTab college={college} />}
                             {activeTab === 'reviews' && <ReviewsTab college={college} />}
                             {activeTab === 'faq' && <FAQTab college={college} />}
                         </div>
