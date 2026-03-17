@@ -23,7 +23,10 @@ class CollegeCourseInline(admin.TabularInline):
     extra = 1
     fields = ('course', 'tuition_fee', 'seat_intake', 'entrance_exam', 'placement_rate', 'average_salary')
     autocomplete_fields = ['course', 'entrance_exam']
-    classes = ['collapse']
+    
+    # Enables a clickable link leading to the dedicated change page for this record.
+    show_change_link = True 
+    # Removed 'classes = ['collapse']' so it's visible fully by default when tab is clicked.
 
 class StudentReviewInline(admin.StackedInline):
     """Inline for managing Reviews related to the College"""
