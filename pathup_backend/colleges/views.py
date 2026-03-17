@@ -221,6 +221,24 @@ class SystemHealthAPIView(views.APIView):
                 raise Exception
         except Exception:
             health_status['meilisearch'] = {'ok': False, 'latency_ms': None}
+
+        # 4. Celery Worker Check
+        start = time.time()
+        try:
+            from pathup_backend.celery import app as celery_app
+            # Ping workers with a short timeout to keep health check fast
+            inspector = celery_app.control.inspect(timeout=1.0)
+            status = inspector.ping()
+            if status and len(status) > 0:
+                health_status['celery'] = {
+                    'ok': True, 
+                    'latency_ms': int((time.time() - start) * 1000), 
+                    'active_workers': len(status)
+                }
+            else:
+                health_status['celery'] = {'ok': False, 'latency_ms': None, 'error': 'No active workers found'}
+        except Exception as e:
+            health_status['celery'] = {'ok': False, 'latency_ms': None, 'error': str(e)}
             
         status_code = 200 if all(service['ok'] for service in health_status.values()) else 503
         return Response(health_status, status=status_code)
