@@ -158,6 +158,10 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
+# Media files (Uploaded Logos, College Images)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 # Meilisearch Settings
 MEILISEARCH_URL = os.environ.get('MEILISEARCH_URL', 'http://127.0.0.1:7700')
 MEILISEARCH_MASTER_KEY = os.environ.get('MEILISEARCH_MASTER_KEY', 'default_key')

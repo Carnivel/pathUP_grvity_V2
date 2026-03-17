@@ -26,8 +26,10 @@ dist-ssr
 # PathUp Project Specifics
 
 # Django Backend
+pathup_backend/media/
 pathup_backend/venv/
-pathup_backend/__pycache__/
+**/__pycache__/
+*.pyc
 pathup_backend/db.sqlite3
 pathup_backend/.env
 pathup_backend/celerybeat-schedule*

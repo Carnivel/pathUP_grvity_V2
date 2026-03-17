@@ -211,11 +211,13 @@ class College(models.Model):
                 counter += 1
             self.slug = slug
 
-        # Auto-optimize logo: resize to 200x200 square, convert to WebP
+        # Auto-optimize logo: resize to 200x200 square, convert to WebP, name with college slug
         if self.logo and hasattr(self.logo, 'file'):
             result = optimize_image(self.logo, max_size=(200, 200), quality=85, is_logo=True)
             if result:
-                new_name, new_content = result
+                _, new_content = result
+                college_slug = self.slug or slugify(self.name)
+                new_name = f"{college_slug}-logo.webp"
                 self.logo.save(new_name, new_content, save=False)
 
         super().save(*args, **kwargs)
@@ -234,10 +236,16 @@ class CollegeImage(models.Model):
 
     def save(self, *args, **kwargs):
         # Auto-optimize gallery images: resize to max 1200x800, convert to WebP
+        # Auto-name with college slug + image number
         if self.image and hasattr(self.image, 'file'):
             result = optimize_image(self.image, max_size=(1200, 800), quality=80, is_logo=False)
             if result:
-                new_name, new_content = result
+                _, new_content = result
+                college_slug = self.college.slug or slugify(self.college.name)
+                # Count existing images for this college to generate a sequential number
+                existing_count = CollegeImage.objects.filter(college=self.college).exclude(pk=self.pk).count()
+                img_number = existing_count + 1
+                new_name = f"{college_slug}-{img_number}.webp"
                 self.image.save(new_name, new_content, save=False)
         super().save(*args, **kwargs)
 
