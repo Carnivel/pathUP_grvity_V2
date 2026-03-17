@@ -15,7 +15,6 @@ class CollegeImageInline(admin.TabularInline):
     model = CollegeImage
     extra = 1
     fields = ('image', 'caption', 'is_primary')
-    classes = ['collapse']
 
 class CollegeCourseInline(admin.TabularInline):
     """Inline for managing Courses Offered by the College"""
@@ -33,7 +32,6 @@ class StudentReviewInline(admin.StackedInline):
     model = StudentReview
     extra = 0
     fields = ('reviewer_role', 'rating_score', 'review_text', 'year_of_study_or_graduation')
-    classes = ['collapse']
 
 
 # ─── College Admin ────────────────────────────────────────────────────────────
@@ -72,6 +70,7 @@ class CollegeAdmin(admin.ModelAdmin):
         ('General Information', {
             'fields': (
                 ('name', 'slug'),
+                'logo',
                 ('city', 'district', 'state', 'country'),
                 ('established_year', 'university', 'ownership_type'),
                 ('website_url', 'email', 'phone_number'),

@@ -180,6 +180,8 @@ class College(models.Model):
     rating = models.DecimalField(max_digits=3, decimal_places=1, blank=True, null=True, db_index=True)
     slug = models.SlugField(max_length=255, unique=True, blank=True, null=True, db_index=True)
 
+    logo = models.ImageField(upload_to='colleges/logos/', blank=True, null=True, help_text="Upload the college logo here.")
+
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='draft', db_index=True)
 
     # Relationships
