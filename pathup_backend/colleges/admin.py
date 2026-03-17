@@ -48,7 +48,20 @@ class CollegeAdmin(admin.ModelAdmin):
     list_per_page = 50
     list_select_related = ('university',)
     prepopulated_fields = {'slug': ('name',)}
-    ordering = ('name',)
+    ordering = ('-status', 'name')  # Completed (published) first, then Draft
+
+    # ─ Bulk Actions ─
+    actions = ['bulk_unpublish', 'bulk_publish']
+
+    @admin.action(description='⏸ Unpublish selected colleges (set to Draft)')
+    def bulk_unpublish(self, request, queryset):
+        count = queryset.update(status='draft')
+        self.message_user(request, f'✅ {count} college(s) set to Draft (unpublished).')
+
+    @admin.action(description='✅ Publish selected colleges (set to Completed)')
+    def bulk_publish(self, request, queryset):
+        count = queryset.update(status='completed')
+        self.message_user(request, f'✅ {count} college(s) set to Completed (published).')
 
     # ─ Detail View / Tab Configuration ─
     # Jazzmin turns these fieldsets into tabs (if changeform_format is horizontal_tabs)
