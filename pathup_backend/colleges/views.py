@@ -76,7 +76,8 @@ class CollegeDetailAPIView(generics.RetrieveAPIView):
         'offered_courses__course__degree',
         'offered_courses__course__specialization__stream',
         'accreditations',
-        'facilities'
+        'facilities',
+        'images'
     )
     serializer_class = CollegeSerializer
     lookup_field = 'slug'

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import (
-    College, Course, CollegeCourse, 
+    College, CollegeImage, Course, CollegeCourse, 
     University, Facility, Accreditation, EntranceExam, Stream, Specialization, Degree,
     Skill, Career, Job, Placement, StudentReview
 )
@@ -40,22 +40,57 @@ class CollegeListSerializer(serializers.ModelSerializer):
     university_name = serializers.CharField(source='university.name', read_only=True, default=None)
     course_count = serializers.IntegerField(read_only=True, default=0)
     min_fee = serializers.DecimalField(max_digits=12, decimal_places=2, read_only=True, default=None)
+    logo_url = serializers.SerializerMethodField()
     
     class Meta:
         model = College
         fields = [
             'id', 'name', 'slug', 'city', 'state', 'district',
             'ownership_type', 'rating', 'established_year',
-            'university_name', 'course_count', 'min_fee', 'website_url'
+            'university_name', 'course_count', 'min_fee', 'website_url', 'logo_url'
         ]
 
+    def get_logo_url(self, obj):
+        request = self.context.get('request')
+        if obj.logo and request:
+            return request.build_absolute_uri(obj.logo.url)
+        elif obj.logo:
+            return obj.logo.url
+        return None
+
+class CollegeImageSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+
+    class Meta:
+        model = CollegeImage
+        fields = ['id', 'image', 'caption', 'is_primary']
+
+    def get_image(self, obj):
+        request = self.context.get('request')
+        if obj.image and request:
+            return request.build_absolute_uri(obj.image.url)
+        elif obj.image:
+            return obj.image.url
+        return None
+
+
 class CollegeSerializer(serializers.ModelSerializer):
-    """Full serializer for detail pages — includes nested course data."""
+    """Full serializer for detail pages — includes nested course data and gallery images."""
     courses = CollegeCourseSerializer(source='offered_courses', many=True, read_only=True)
+    images = CollegeImageSerializer(many=True, read_only=True)
+    logo_url = serializers.SerializerMethodField()
 
     class Meta:
         model = College
         fields = '__all__'
+
+    def get_logo_url(self, obj):
+        request = self.context.get('request')
+        if obj.logo and request:
+            return request.build_absolute_uri(obj.logo.url)
+        elif obj.logo:
+            return obj.logo.url
+        return None
 
 class SkillSerializer(serializers.ModelSerializer):
     class Meta:

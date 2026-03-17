@@ -46,9 +46,19 @@ export default function LoadMoreColleges({ initialColleges, searchParamsString, 
                         <Link href={`/colleges/${college.slug || college.id}`} className="card-link-overlay" aria-label={`View details for ${college.name}`}></Link>
                         
                         <div className="card-image-wrap">
-                            <div className="placeholder-logo">
-                                <Building2 size={32} strokeWidth={1.5} color="var(--color-primary)" />
-                            </div>
+                            {college.logo_url ? (
+                                <div className="placeholder-logo" style={{ padding: 0, overflow: 'hidden' }}>
+                                    <img 
+                                        src={college.logo_url} 
+                                        alt={`${college.name} logo`} 
+                                        style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '8px' }} 
+                                    />
+                                </div>
+                            ) : (
+                                <div className="placeholder-logo">
+                                    <Building2 size={32} strokeWidth={1.5} color="var(--color-primary)" />
+                                </div>
+                            )}
                             <div className="type-badge standalone">{college.ownership_type || 'Institution'}</div>
                         </div>
 

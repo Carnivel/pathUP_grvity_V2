@@ -45,8 +45,8 @@ export async function getColleges(queryParams = "") {
 }
 
 export async function getCollegeBySlug(slug) {
-    // Uses ISR caching
-    const data = await fetchAPI(`/colleges/${slug}/`);
+    // Always fetch fresh data to ensure images and latest changes are reflected
+    const data = await fetchAPI(`/colleges/${slug}/`, { cache: 'no-store', next: { revalidate: 0 } });
     return data;
 }
 
