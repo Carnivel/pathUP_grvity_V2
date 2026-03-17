@@ -56,12 +56,20 @@ class CollegeAdmin(admin.ModelAdmin):
 
     @admin.action(description='⏸ Unpublish selected colleges (set to Draft)')
     def bulk_unpublish(self, request, queryset):
-        count = queryset.update(status='draft')
+        count = 0
+        for college in queryset:
+            college.status = 'draft'
+            college.save(update_fields=['status'])
+            count += 1
         self.message_user(request, f'✅ {count} college(s) set to Draft (unpublished).')
 
     @admin.action(description='✅ Publish selected colleges (set to Completed)')
     def bulk_publish(self, request, queryset):
-        count = queryset.update(status='completed')
+        count = 0
+        for college in queryset:
+            college.status = 'completed'
+            college.save(update_fields=['status'])
+            count += 1
         self.message_user(request, f'✅ {count} college(s) set to Completed (published).')
 
     # ─ Detail View / Tab Configuration ─

@@ -37,7 +37,6 @@ def initialize_index(index_name='colleges'):
             client.create_index(index_name, {'primaryKey': 'id'})
             index = client.get_index(index_name)
             
-            # Applying strict configuration per architectural phase 2
             index.update_settings({
                 'searchableAttributes': [
                     'name',
@@ -59,7 +58,6 @@ def initialize_index(index_name='colleges'):
                     'proximity',
                     'attribute',
                     'sort',
-                    'ranking_score:desc',  # Custom boost for top colleges
                     'exactness'
                 ]
             })
