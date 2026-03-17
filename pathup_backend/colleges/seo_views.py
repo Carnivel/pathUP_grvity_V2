@@ -49,7 +49,7 @@ class SEOCitySummaryDetailAPIView(SEOSummaryBaseAPIView):
             top_ids = redis_client.zrevrange(f"rankings:trending:city:{city_slug}", 0, 9)
             if top_ids:
                 top_ids = [int(i.decode('utf-8')) for i in top_ids]
-                colleges = College.objects.filter(id__in=top_ids)
+                colleges = College.published.filter(id__in=top_ids)
                 college_dict = {col.id: col for col in colleges}
                 sorted_colleges = [college_dict[i] for i in top_ids if i in college_dict]
                 
@@ -146,7 +146,7 @@ class TopCollegesAPIView(views.APIView):
             
         top_ids = [int(i.decode('utf-8')) for i in top_id_bytes]
         
-        queryset = College.objects.select_related('university').prefetch_related(
+        queryset = College.published.select_related('university').prefetch_related(
             'offered_courses__course__degree', 'offered_courses__course__specialization__stream'
         ).filter(id__in=top_ids)
         
@@ -173,7 +173,7 @@ class SitemapIndexAPIView(views.APIView):
         redis_client = get_redis_connection("default")
         
         # We need a rough count of colleges to chunk them
-        total_colleges = College.objects.count()
+        total_colleges = College.published.count()
         chunk_size = 1000
         chunks = (total_colleges // chunk_size) + 1
         
@@ -207,7 +207,7 @@ class SitemapAPIView(views.APIView):
             end = start + chunk_size
             
             # Using only() to fetch exactly what we need, extremely fast
-            colleges = College.objects.only('slug').order_by('id')[start:end]
+            colleges = College.published.only('slug').order_by('id')[start:end]
             
             for c in colleges:
                 # We don't have an updatedAt field natively on College yet without altering schema,

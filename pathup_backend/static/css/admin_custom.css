@@ -1,0 +1,557 @@
+/* ─── PathUp Admin — Consistent Dark SaaS Dashboard ─────────────────────────── */
+/* FULL RESET: Every component forced to dark palette. No light remnants. */
+
+/* ── Color Tokens ──
+   --bg-body:    #1a1d23   (darkest — page background)
+   --bg-surface: #212529   (cards, sidebar, navbar)
+   --bg-raised:  #2b3035   (card headers, table headers, hover states)
+   --bg-hover:   #343a40   (interactive hover)
+   --border:     #363c42   (subtle borders)
+   --text-primary:#e9ecef  (bright white text)
+   --text-secondary:#adb5bd (muted text)
+   --accent:     #3b82f6   (blue highlights)
+   --accent-hover:#2563eb  (blue active/hover)
+*/
+
+/* === BODY & WRAPPERS === */
+body,
+body.dark-mode,
+.wrapper,
+.dark-mode .wrapper,
+.content-wrapper,
+.dark-mode .content-wrapper {
+    background-color: #1a1d23 !important;
+    color: #e9ecef !important;
+}
+
+/* === NAVBAR === */
+.main-header.navbar,
+.dark-mode .main-header.navbar {
+    background-color: #212529 !important;
+    border-bottom: 1px solid #363c42 !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3) !important;
+}
+.main-header .navbar-nav .nav-link {
+    color: #adb5bd !important;
+    font-weight: 500;
+}
+.main-header .navbar-nav .nav-link:hover {
+    color: #3b82f6 !important;
+}
+
+/* === SIDEBAR === */
+.main-sidebar,
+.dark-mode .main-sidebar {
+    background-color: #212529 !important;
+    border-right: 1px solid #363c42 !important;
+}
+
+/* Sidebar brand */
+.main-sidebar .brand-link {
+    background-color: #1a1d23 !important;
+    border-bottom: 1px solid #363c42 !important;
+    color: #e9ecef !important;
+    padding: 14px 16px !important;
+}
+.main-sidebar .brand-link .brand-text {
+    color: #e9ecef !important;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+/* Sidebar nav items */
+.sidebar .nav-sidebar .nav-link {
+    color: #adb5bd !important;
+    border-radius: 6px !important;
+    margin: 2px 8px !important;
+    padding: 9px 14px !important;
+    font-size: 13.5px;
+    font-weight: 500;
+}
+.sidebar .nav-sidebar .nav-link:hover {
+    background-color: #2b3035 !important;
+    color: #e9ecef !important;
+}
+.sidebar .nav-sidebar .nav-link.active {
+    background-color: #3b82f6 !important;
+    color: #ffffff !important;
+}
+.sidebar .nav-sidebar .nav-link.active i,
+.sidebar .nav-sidebar .nav-link.active p {
+    color: #ffffff !important;
+}
+.sidebar .nav-sidebar .nav-link i {
+    color: #6c757d !important;
+    font-size: 13px;
+    width: 22px;
+}
+.sidebar .nav-sidebar .nav-link:hover i {
+    color: #3b82f6 !important;
+}
+
+/* Sidebar section headers (group labels) */
+.sidebar .nav-header {
+    color: #3b82f6 !important;
+    font-size: 11px !important;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 16px 20px 6px !important;
+    border-top: 1px solid #363c42;
+    margin-top: 4px;
+}
+.sidebar .nav-header:first-child {
+    border-top: none;
+    margin-top: 0;
+}
+
+/* === CARDS (Dashboard groups, detail pages, forms) === */
+.card,
+.dark-mode .card {
+    background-color: #212529 !important;
+    border: 1px solid #363c42 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2) !important;
+    margin-bottom: 20px;
+}
+.card-header,
+.dark-mode .card-header {
+    background-color: #2b3035 !important;
+    border-bottom: 1px solid #363c42 !important;
+    color: #e9ecef !important;
+    font-weight: 600 !important;
+    font-size: 15px;
+    padding: 14px 20px !important;
+}
+.card-header h3,
+.card-header .card-title,
+.dark-mode .card-header h3,
+.dark-mode .card-header .card-title {
+    color: #e9ecef !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+}
+.card-header:first-child {
+    border-radius: 8px 8px 0 0 !important;
+}
+.card-body,
+.dark-mode .card-body {
+    color: #dee2e6 !important;
+    padding: 16px 20px !important;
+    background-color: #212529 !important;
+}
+caption,
+.card caption {
+    color: #e9ecef !important;
+    font-weight: 600;
+}
+
+/* === TABLES === */
+.table,
+.dark-mode .table {
+    background-color: #212529 !important;
+    color: #dee2e6 !important;
+    margin-bottom: 0 !important;
+}
+.table thead th,
+.dark-mode .table thead th {
+    background-color: #2b3035 !important;
+    color: #adb5bd !important;
+    font-weight: 700 !important;
+    font-size: 11.5px !important;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    border-bottom: 2px solid #363c42 !important;
+    border-top: none !important;
+    padding: 12px 16px !important;
+    white-space: nowrap;
+}
+.table tbody td,
+.dark-mode .table tbody td {
+    color: #dee2e6 !important;
+    font-size: 13.5px;
+    padding: 11px 16px !important;
+    border-bottom: 1px solid #2b3035 !important;
+    vertical-align: middle !important;
+    background-color: transparent !important;
+}
+.table-striped tbody tr:nth-of-type(odd),
+.dark-mode .table-striped tbody tr:nth-of-type(odd) {
+    background-color: #1e2227 !important;
+}
+.table-striped tbody tr:nth-of-type(even),
+.dark-mode .table-striped tbody tr:nth-of-type(even) {
+    background-color: #212529 !important;
+}
+.table-hover tbody tr:hover,
+.dark-mode .table-hover tbody tr:hover {
+    background-color: #2b3035 !important;
+}
+
+/* Table links */
+.table tbody td a {
+    color: #3b82f6 !important;
+    font-weight: 500;
+    text-decoration: none;
+}
+.table tbody td a:hover {
+    color: #60a5fa !important;
+    text-decoration: underline;
+}
+
+/* === BUTTONS (all action buttons → single flat blue, white text) === */
+.btn-primary,
+.btn-success,
+.btn-info {
+    background-color: #3b82f6 !important;
+    border-color: #3b82f6 !important;
+    border-radius: 6px !important;
+    color: #fff !important;
+    font-weight: 600;
+    background-image: none !important;  /* kill any gradient */
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-success:hover,
+.btn-success:focus,
+.btn-info:hover,
+.btn-info:focus {
+    background-color: #2563eb !important;
+    border-color: #2563eb !important;
+    color: #fff !important;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.35) !important;
+    background-image: none !important;
+}
+
+/* Jazzmin dashboard Add/Change/Delete action links */
+a.addlink,
+a.changelink,
+.card a.btn,
+.card-body a.btn {
+    background-color: #3b82f6 !important;
+    border-color: #3b82f6 !important;
+    color: #ffffff !important;
+    border-radius: 4px !important;
+    font-weight: 600;
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+    padding: 4px 12px !important;
+    text-decoration: none !important;
+    background-image: none !important;
+    text-indent: 0 !important;
+    overflow: visible !important;
+    visibility: visible !important;
+    display: inline-block !important;
+}
+a.addlink *,
+a.changelink *,
+.card a.btn *,
+.card-body a.btn * {
+    color: #ffffff !important;
+    visibility: visible !important;
+}
+a.addlink:hover,
+a.changelink:hover,
+.card a.btn:hover,
+.card-body a.btn:hover {
+    background-color: #2563eb !important;
+    border-color: #2563eb !important;
+    color: #ffffff !important;
+}
+a.deletelink {
+    background-color: #dc2626 !important;
+    border-color: #dc2626 !important;
+    color: #ffffff !important;
+    border-radius: 4px !important;
+    font-weight: 600;
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+    padding: 4px 12px !important;
+    background-image: none !important;
+    visibility: visible !important;
+}
+a.deletelink * {
+    color: #ffffff !important;
+}
+a.deletelink:hover {
+    background-color: #b91c1c !important;
+    color: #ffffff !important;
+}
+
+/* Save / Submit buttons */
+input[type="submit"],
+button[type="submit"],
+.submit-row input,
+.submit-row button {
+    background-color: #3b82f6 !important;
+    border-color: #3b82f6 !important;
+    color: #ffffff !important;
+    border-radius: 6px !important;
+    font-weight: 600;
+    padding: 8px 20px !important;
+    background-image: none !important;
+    cursor: pointer;
+}
+input[type="submit"]:hover,
+button[type="submit"]:hover,
+.submit-row input:hover,
+.submit-row button:hover {
+    background-color: #2563eb !important;
+    border-color: #2563eb !important;
+    color: #ffffff !important;
+}
+
+/* Delete confirmation button (red) */
+input.default[type="submit"][value*="delete" i],
+input.default[type="submit"][value*="Delete" i] {
+    background-color: #dc2626 !important;
+    border-color: #dc2626 !important;
+}
+
+/* Danger buttons */
+.btn-danger {
+    background-color: #dc2626 !important;
+    border-color: #dc2626 !important;
+    color: #fff !important;
+    background-image: none !important;
+}
+.btn-danger:hover {
+    background-color: #b91c1c !important;
+    border-color: #b91c1c !important;
+}
+
+/* Warning buttons */
+.btn-warning {
+    background-color: #d97706 !important;
+    border-color: #d97706 !important;
+    color: #fff !important;
+    background-image: none !important;
+}
+.btn-warning:hover {
+    background-color: #b45309 !important;
+    color: #fff !important;
+}
+
+/* Outline/secondary buttons */
+.btn-outline-light {
+    border-color: #495057 !important;
+    color: #adb5bd !important;
+    border-radius: 6px !important;
+}
+.btn-outline-light:hover {
+    background-color: #343a40 !important;
+    color: #e9ecef !important;
+}
+
+/* === LINKS === */
+a {
+    color: #3b82f6 !important;
+}
+a:hover {
+    color: #60a5fa !important;
+}
+
+/* === BREADCRUMBS === */
+.breadcrumb {
+    background-color: transparent !important;
+    padding: 8px 0 !important;
+}
+.breadcrumb-item a {
+    color: #3b82f6 !important;
+}
+.breadcrumb-item.active {
+    color: #6c757d !important;
+}
+
+/* === PAGINATION === */
+.page-item.active .page-link {
+    background-color: #3b82f6 !important;
+    border-color: #3b82f6 !important;
+    color: #fff !important;
+}
+.page-link {
+    color: #3b82f6 !important;
+    background-color: #212529 !important;
+    border-color: #363c42 !important;
+    border-radius: 6px !important;
+    margin: 0 2px;
+}
+.page-link:hover {
+    background-color: #2b3035 !important;
+    color: #60a5fa !important;
+}
+
+/* === FILTERS PANEL === */
+#changelist-filter {
+    background-color: #212529 !important;
+    border: 1px solid #363c42 !important;
+    border-radius: 8px !important;
+    padding: 14px !important;
+}
+#changelist-filter h2,
+#changelist-filter h3 {
+    color: #3b82f6 !important;
+    font-weight: 700;
+    font-size: 14px;
+}
+#changelist-filter li a {
+    color: #adb5bd !important;
+    font-size: 13px;
+}
+#changelist-filter li a:hover,
+#changelist-filter li a.selected {
+    color: #3b82f6 !important;
+    font-weight: 600;
+}
+
+/* === FORMS === */
+.form-control,
+.dark-mode .form-control,
+input[type="text"],
+input[type="search"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+textarea {
+    background-color: #2b3035 !important;
+    border: 1px solid #495057 !important;
+    border-radius: 6px !important;
+    color: #e9ecef !important;
+    padding: 9px 14px !important;
+    font-size: 14px;
+}
+.form-control:focus,
+input:focus,
+textarea:focus {
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15) !important;
+    background-color: #2b3035 !important;
+    color: #e9ecef !important;
+}
+
+/* === SELECT DROPDOWNS === */
+select.form-control,
+select,
+.dark-mode select {
+    background-color: #2b3035 !important;
+    border: 1px solid #495057 !important;
+    color: #e9ecef !important;
+}
+
+/* === LOGIN PAGE === */
+.login-page {
+    background-color: #1a1d23 !important;
+}
+.login-box .card {
+    background-color: #212529 !important;
+    border-radius: 10px !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4) !important;
+    border: 1px solid #363c42 !important;
+}
+.login-box .card-header {
+    background-color: #2b3035 !important;
+    color: #e9ecef !important;
+}
+
+/* === FOOTER === */
+.main-footer,
+.dark-mode .main-footer {
+    background-color: #212529 !important;
+    border-top: 1px solid #363c42 !important;
+    color: #6c757d !important;
+    font-size: 13px;
+}
+
+/* === CONTENT HEADER === */
+.content-header h1 {
+    color: #e9ecef !important;
+    font-weight: 700;
+    font-size: 22px;
+}
+
+/* === MODULE HEADINGS === */
+.module h2,
+.module caption {
+    color: #e9ecef !important;
+    font-weight: 700 !important;
+}
+
+/* === INFO BOX === */
+.info-box,
+.dark-mode .info-box {
+    background-color: #212529 !important;
+    border: 1px solid #363c42 !important;
+    border-radius: 8px !important;
+}
+.info-box .info-box-text {
+    color: #6c757d !important;
+}
+.info-box .info-box-number {
+    color: #e9ecef !important;
+    font-weight: 700;
+}
+
+/* === SMALL BOX === */
+.small-box {
+    border-radius: 8px !important;
+}
+
+/* === BADGES === */
+.badge-primary, .bg-primary {
+    background-color: #3b82f6 !important;
+}
+.badge-success, .bg-success {
+    background-color: #16a34a !important;
+}
+.badge-danger, .bg-danger {
+    background-color: #dc2626 !important;
+}
+
+/* === MODAL === */
+.modal-content,
+.dark-mode .modal-content {
+    background-color: #212529 !important;
+    border: 1px solid #363c42 !important;
+    color: #e9ecef !important;
+}
+.modal-header {
+    border-bottom-color: #363c42 !important;
+}
+.modal-footer {
+    border-top-color: #363c42 !important;
+}
+
+/* === SELECT2 (Jazzmin uses this for dropdowns) === */
+.select2-container--default .select2-selection--single,
+.select2-container--default .select2-selection--multiple {
+    background-color: #2b3035 !important;
+    border-color: #495057 !important;
+    color: #e9ecef !important;
+}
+.select2-container--default .select2-results__option {
+    background-color: #212529 !important;
+    color: #dee2e6 !important;
+}
+.select2-container--default .select2-results__option--highlighted {
+    background-color: #3b82f6 !important;
+    color: #fff !important;
+}
+.select2-dropdown {
+    background-color: #212529 !important;
+    border-color: #495057 !important;
+}
+
+/* === FORCE ALL TEXT TO LIGHT === */
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    color: #e9ecef !important;
+}
+p, li, span, label, legend {
+    color: #dee2e6;
+}
+hr {
+    border-color: #363c42 !important;
+}
+.text-muted {
+    color: #6c757d !important;
+}

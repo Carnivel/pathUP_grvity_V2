@@ -60,7 +60,7 @@ class CollegeListAPIView(generics.ListAPIView):
     pagination_class = CollegePagination
 
     def get_queryset(self):
-        return College.objects.select_related(
+        return College.published.select_related(
             'university'
         ).annotate(
             course_count=Count('offered_courses', distinct=True),
@@ -70,7 +70,7 @@ class CollegeListAPIView(generics.ListAPIView):
 @method_decorator(cache_page(settings.CACHE_TTL * 24), name='get')
 @method_decorator(cache_control(public=True, max_age=settings.CACHE_TTL * 24), name='get')
 class CollegeDetailAPIView(generics.RetrieveAPIView):
-    queryset = College.objects.select_related(
+    queryset = College.published.select_related(
         'university'
     ).prefetch_related(
         'offered_courses__course__degree',
@@ -165,7 +165,7 @@ class CollegeSearchAPIView(views.APIView):
         if not hit_ids:
             return Response({"results": [], "count": ms_response['estimatedTotalHits']})
 
-        queryset = College.objects.prefetch_related(
+        queryset = College.published.prefetch_related(
             'offered_courses__course__degree',
             'offered_courses__course__specialization',
             'university'
@@ -261,7 +261,7 @@ class TrendingCollegesAPIView(views.APIView):
             
         top_ids = [int(i.decode('utf-8')) for i in top_id_bytes]
         
-        queryset = College.objects.select_related(
+        queryset = College.published.select_related(
             'university'
         ).prefetch_related(
             'offered_courses__course__degree',

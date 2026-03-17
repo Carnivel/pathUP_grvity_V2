@@ -39,7 +39,8 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    'jazzmin',
+    'pathup_backend.apps.PathUpAdminConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -153,6 +154,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
 
 # Meilisearch Settings
 MEILISEARCH_URL = os.environ.get('MEILISEARCH_URL', 'http://127.0.0.1:7700')
@@ -238,5 +242,102 @@ LOGGING = {
             'level': 'INFO',
             'propagate': True,
         },
+    },
+}
+
+# ─── Jazzmin Admin Theme ──────────────────────────────────────────────────────
+JAZZMIN_SETTINGS = {
+    # Window / Tab title
+    "site_title": "PathUp Admin",
+    # Brand text in the top-left corner
+    "site_header": "PathUp College Manager",
+    # Brand text on the login page
+    "site_brand": "PathUp",
+    # Welcome text on the login screen
+    "welcome_sign": "Welcome to the PathUp Data Management System",
+    # Copyright on the footer
+    "copyright": "PathUp Education Platform",
+    # Logo
+    "site_logo": "img/pathup_logo.png",
+    "login_logo": "img/pathup_logo.png",
+    "site_logo_classes": "img-circle",
+    "site_icon": "img/pathup_logo.png",
+    # Top Navigation
+    "topmenu_links": [
+        {"name": "🏠 Home", "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"name": "🩺 API Health", "url": "/api/health/", "new_window": True},
+        {"name": "🌐 Website", "url": "http://localhost:3000", "new_window": True},
+    ],
+    # Sidebar
+    "show_sidebar": True,
+    "navigation_expanded": True,
+    "order_with_respect_to": [
+        "auth",
+        "College Core Data",
+        "Academic Structure",
+        "Admissions & Career",
+        "Campus & Facilities",
+        "Media & Reviews",
+    ],
+    # Icons (FontAwesome 5)
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        "colleges.College": "fas fa-university",
+        "colleges.Course": "fas fa-book",
+        "colleges.CollegeCourse": "fas fa-graduation-cap",
+        "colleges.Career": "fas fa-briefcase",
+        "colleges.Skill": "fas fa-cogs",
+        "colleges.University": "fas fa-building",
+        "colleges.Stream": "fas fa-stream",
+        "colleges.Specialization": "fas fa-microscope",
+        "colleges.Degree": "fas fa-scroll",
+        "colleges.EntranceExam": "fas fa-file-alt",
+        "colleges.Facility": "fas fa-tools",
+        "colleges.Accreditation": "fas fa-award",
+        "colleges.CollegeImage": "fas fa-image",
+        "colleges.Job": "fas fa-id-badge",
+        "colleges.Placement": "fas fa-chart-line",
+        "colleges.StudentReview": "fas fa-star",
+    },
+    "default_icon_parents": "fas fa-chevron-circle-right",
+    "default_icon_children": "fas fa-circle",
+    # Form layout
+    "changeform_format": "horizontal_tabs",
+    "related_modal_active": True,
+    # Custom CSS
+    "custom_css": "css/admin_custom.css",
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "navbar_small_text": False,
+    "footer_small_text": False,
+    "body_small_text": False,
+    "brand_small_text": False,
+    "brand_colour": "navbar-dark",
+    "accent": "accent-primary",
+    "navbar": "navbar-dark",
+    "no_navbar_border": True,
+    "navbar_fixed": True,
+    "layout_boxed": False,
+    "footer_fixed": False,
+    "sidebar_fixed": True,
+    "sidebar": "sidebar-dark-primary",
+    "sidebar_nav_small_text": False,
+    "sidebar_disable_expand": False,
+    "sidebar_nav_child_indent": True,
+    "sidebar_nav_compact_style": False,
+    "sidebar_nav_legacy_style": False,
+    "sidebar_nav_flat_style": False,
+    "theme": "darkly",
+    "dark_mode_theme": "darkly",
+    "button_classes": {
+        "primary": "btn-primary",
+        "secondary": "btn-outline-light",
+        "info": "btn-info",
+        "warning": "btn-warning",
+        "danger": "btn-danger",
+        "success": "btn-success",
     },
 }

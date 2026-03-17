@@ -143,7 +143,18 @@ class Course(models.Model):
     def __str__(self):
         return f"{self.degree.name} in {self.specialization.name}"
 
+class PublishedCollegeManager(models.Manager):
+    """Custom manager that returns only completed/published colleges for public APIs."""
+    def get_queryset(self):
+        return super().get_queryset().filter(status='completed')
+
+
 class College(models.Model):
+    STATUS_CHOICES = [
+        ('draft', 'Draft'),
+        ('completed', 'Completed'),
+    ]
+
     GOVT_OR_PVT_CHOICES = [
         ('Government', 'Government'),
         ('Private', 'Private'),
@@ -169,15 +180,22 @@ class College(models.Model):
     rating = models.DecimalField(max_digits=3, decimal_places=1, blank=True, null=True, db_index=True)
     slug = models.SlugField(max_length=255, unique=True, blank=True, null=True, db_index=True)
 
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='draft', db_index=True)
+
     # Relationships
     accreditations = models.ManyToManyField(Accreditation, blank=True, related_name='colleges')
     facilities = models.ManyToManyField(Facility, blank=True, related_name='colleges')
+
+    # Managers — 'objects' stays default so existing code doesn't break
+    objects = models.Manager()
+    published = PublishedCollegeManager()
 
     class Meta:
         ordering = ['name']
         indexes = [
             models.Index(fields=['name']),
             models.Index(fields=['state']),
+            models.Index(fields=['status']),
         ]
 
     def save(self, *args, **kwargs):

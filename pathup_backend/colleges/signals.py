@@ -28,10 +28,13 @@ def invalidate_cache(slug=None):
 
 @receiver(post_save, sender=College)
 def save_college_signal(sender, instance, **kwargs):
-    # Invalidate Redis
+    # Invalidate Redis cache regardless of status
     invalidate_cache(getattr(instance, 'slug', None))
-    # Queue Meilisearch Update Job
-    bulk_update_colleges_in_meilisearch.delay([instance.id])
+    # Only sync to Meilisearch if published; remove if draft
+    if instance.status == 'completed':
+        bulk_update_colleges_in_meilisearch.delay([instance.id])
+    else:
+        remove_college_from_meilisearch.delay(instance.id)
 
 @receiver(post_delete, sender=College)
 def delete_college_signal(sender, instance, **kwargs):

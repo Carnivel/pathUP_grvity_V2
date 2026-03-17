@@ -10,7 +10,7 @@ def bulk_update_colleges_in_meilisearch(self, college_ids_list):
     Asynchronously bulk push a list of college IDs to Meilisearch.
     This pattern ensures high performance during massive data imports.
     """
-    colleges = College.objects.prefetch_related(
+    colleges = College.published.prefetch_related(
         'offered_courses__course__degree',
         'offered_courses__course__specialization',
         'reviews'
@@ -104,7 +104,7 @@ def calculate_trending_scores():
     # 2. Fetch Static Stats from DB (Only for active colleges)
     active_college_ids = [int(cid) for cid in college_views.keys()]
     
-    active_colleges = College.objects.filter(id__in=active_college_ids).annotate(
+    active_colleges = College.published.filter(id__in=active_college_ids).annotate(
         review_count=Count('reviews')
     ).values('id', 'rating', 'review_count', 'city', 'state')
     
@@ -184,7 +184,7 @@ def precompute_seo_aggregates():
     pipeline = redis_client.pipeline()
     
     # 1. Precompute State Aggregates
-    states = College.objects.values('state').annotate(
+    states = College.published.values('state').annotate(
         total_colleges=Count('id'),
         avg_rating=Avg('rating')
     ).filter(total_colleges__gt=0)
@@ -195,11 +195,11 @@ def precompute_seo_aggregates():
         if not state_name: continue
         
         # Ownership breakdown
-        ownership = list(College.objects.filter(state__iexact=s['state']).values_list('ownership_type', flat=True))
+        ownership = list(College.published.filter(state__iexact=s['state']).values_list('ownership_type', flat=True))
         own_counts = dict(Counter(ownership))
         
         # Top 5 cities in this state
-        top_cities = list(College.objects.filter(state__iexact=s['state'])
+        top_cities = list(College.published.filter(state__iexact=s['state'])
                           .values('city')
                           .annotate(count=Count('id'))
                           .order_by('-count')[:5])
@@ -223,7 +223,7 @@ def precompute_seo_aggregates():
     pipeline.set("seo:state:all", json.dumps(state_list))
 
     # 2. Precompute City Aggregates
-    cities = College.objects.values('city', 'state').annotate(
+    cities = College.published.values('city', 'state').annotate(
         total_colleges=Count('id'),
         avg_rating=Avg('rating')
     ).filter(total_colleges__gt=0)
@@ -233,7 +233,7 @@ def precompute_seo_aggregates():
         city_name = c['city'].lower().strip()
         if not city_name: continue
         
-        ownership = list(College.objects.filter(city__iexact=c['city']).values_list('ownership_type', flat=True))
+        ownership = list(College.published.filter(city__iexact=c['city']).values_list('ownership_type', flat=True))
         own_counts = dict(Counter(ownership))
         
         seo_data = {
