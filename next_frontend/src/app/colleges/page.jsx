@@ -13,6 +13,8 @@ export const metadata = {
     description: 'Discover and compare top colleges based on rankings, fees, courses offered, and placement records. Find the right college for you.',
 };
 
+export const dynamic = 'force-dynamic';
+
 // Next.js 15 Server Component
 export default async function CollegesPage({ searchParams }) {
     // searchParams must be awaited in Next.js 15

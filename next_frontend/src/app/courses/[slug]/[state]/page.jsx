@@ -6,16 +6,7 @@ import { getCollegesByCourseAndState, getTopCourseStateCombinations, getRelatedC
 import { courses } from '../../../../data/coursesData';
 import './CourseState.css';
 
-export const revalidate = 3600;
-export const dynamicParams = true;
-
-export async function generateStaticParams() {
-    const combinations = await getTopCourseStateCombinations();
-    return combinations.map((combo) => ({
-        slug: combo.course.toString(),
-        state: combo.state.toString(),
-    }));
-}
+export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ params }) {
     const { slug, state } = await params;

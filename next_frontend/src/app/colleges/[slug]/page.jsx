@@ -3,22 +3,7 @@ import { getColleges, getCollegeBySlug } from '../../../lib/api';
 import CollegeDetailClient from './CollegeDetailClient';
 import PageTransition from '../../../components/PageTransition';
 
-export const revalidate = 3600;
-export const dynamicParams = true;
-
-export async function generateStaticParams() {
-    const response = await getColleges();
-    const colleges = response?.results || response || [];
-
-    if (!colleges || colleges.length === 0) {
-        throw new Error("Critical failure during generateStaticParams in Colleges: API returned empty records.");
-    }
-
-    return colleges.map((college) => {
-        if (!college.slug) throw new Error(`Missing slug for college ID: ${college.id}`);
-        return { slug: college.slug };
-    });
-}
+export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ params }) {
     const { slug } = await params;

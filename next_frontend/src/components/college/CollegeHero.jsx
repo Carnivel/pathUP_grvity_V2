@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { MapPin, Star, Building, CheckCircle, ArrowLeft, Image as ImageIcon, Heart } from 'lucide-react';
 
-export default function CollegeHero({ college }) {
+export default function CollegeHero({ college, onViewGallery }) {
     const router = useRouter();
 
     // Fallback demo images — used ONLY when a college has NO images in the database
@@ -117,7 +117,9 @@ export default function CollegeHero({ college }) {
     );
 
     const photoCountButton = (
-        <button style={{
+        <button 
+            onClick={() => onViewGallery && onViewGallery()}
+            style={{
             position: 'absolute', bottom: '20px', right: '20px',
             display: 'flex', alignItems: 'center', gap: '8px',
             background: 'white', color: '#0F172A', border: 'none',

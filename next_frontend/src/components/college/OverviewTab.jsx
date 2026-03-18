@@ -1,5 +1,6 @@
 "use client";
 import React from 'react';
+import CollegeVideoSection from './CollegeVideoSection';
 
 export default function OverviewTab({ college }) {
     return (
@@ -50,6 +51,8 @@ export default function OverviewTab({ college }) {
                     </div>
                 </div>
             </div>
+            
+            <CollegeVideoSection videos={college?.videos} />
         </div>
     );
 }

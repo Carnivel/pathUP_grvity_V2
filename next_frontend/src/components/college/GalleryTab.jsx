@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useCallback } from 'react';
 import { X, ChevronLeft, ChevronRight, ImageIcon, Sparkles, ZoomIn } from 'lucide-react';
+import CollegeVideoSection from './CollegeVideoSection';
 
 export default function GalleryTab({ college }) {
     const images = college?.images || [];
@@ -38,120 +39,122 @@ export default function GalleryTab({ college }) {
         };
     }, [lightboxOpen, closeLightbox, goNext, goPrev]);
 
-    // Empty state
-    if (!images.length) {
-        return (
-            <div className="fade-in" style={{ textAlign: 'center', padding: '4rem 2rem' }}>
-                <div style={{
-                    width: '80px', height: '80px', margin: '0 auto 1.5rem',
-                    background: 'linear-gradient(135deg, #F1F5F9, #E2E8F0)',
-                    borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center'
-                }}>
-                    <ImageIcon size={36} style={{ color: '#94A3B8' }} />
-                </div>
-                <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: '#0F172A', marginBottom: '0.5rem' }}>
-                    No Photos Available Yet
-                </h3>
-                <p style={{ color: '#64748B', fontSize: '0.9rem', maxWidth: '400px', margin: '0 auto', lineHeight: '1.6' }}>
-                    Campus photos for {college.name} will be added soon. Check back later for a visual tour of the campus.
-                </p>
-            </div>
-        );
-    }
-
     // Sort: primary first
     const sortedImages = [...images].sort((a, b) => (b.is_primary ? 1 : 0) - (a.is_primary ? 1 : 0));
 
     return (
         <div className="fade-in">
+
             {/* Header */}
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '0.5rem' }}>
                 <h2 style={{ fontSize: '1.25rem', fontWeight: '800', color: '#0F172A', margin: 0 }}>
                     Campus Gallery
                 </h2>
-                <span style={{
-                    fontSize: '0.8rem', fontWeight: '600', color: '#64748B',
-                    background: '#F1F5F9', padding: '0.35rem 0.85rem', borderRadius: '20px', border: '1px solid #E2E8F0'
+                {images.length > 0 && (
+                    <span style={{
+                        fontSize: '0.8rem', fontWeight: '600', color: '#64748B',
+                        background: '#F1F5F9', padding: '0.35rem 0.85rem', borderRadius: '20px', border: '1px solid #E2E8F0'
+                    }}>
+                        {images.length} {images.length === 1 ? 'Photo' : 'Photos'}
+                    </span>
+                )}
+            </div>
+
+            {/* Gallery Grid or Empty State */}
+            {images.length > 0 ? (
+                <div className="gallery-grid" style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+                    gap: '1rem'
                 }}>
-                    {images.length} {images.length === 1 ? 'Photo' : 'Photos'}
-                </span>
-            </div>
-
-            {/* Gallery Grid */}
-            <div className="gallery-grid" style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
-                gap: '1rem'
-            }}>
-                {sortedImages.map((img, i) => (
-                    <div
-                        key={img.id || i}
-                        className="gallery-card"
-                        onClick={() => openLightbox(i)}
-                        style={{
-                            position: 'relative',
-                            borderRadius: '12px',
-                            overflow: 'hidden',
-                            cursor: 'pointer',
-                            background: '#F1F5F9',
-                            border: '1px solid #E2E8F0',
-                            transition: 'transform 0.25s ease, box-shadow 0.25s ease',
-                            aspectRatio: '4 / 3'
-                        }}
-                    >
-                        <img
-                            src={img.image}
-                            alt={img.caption || `${college.name} campus photo ${i + 1}`}
-                            loading="lazy"
+                    {sortedImages.map((img, i) => (
+                        <div
+                            key={img.id || i}
+                            className="gallery-card"
+                            onClick={() => openLightbox(i)}
                             style={{
-                                width: '100%', height: '100%', objectFit: 'cover',
-                                display: 'block', transition: 'transform 0.35s ease'
+                                position: 'relative',
+                                borderRadius: '12px',
+                                overflow: 'hidden',
+                                cursor: 'pointer',
+                                background: '#F1F5F9',
+                                border: '1px solid #E2E8F0',
+                                transition: 'transform 0.25s ease, box-shadow 0.25s ease',
+                                aspectRatio: '4 / 3'
                             }}
-                        />
+                        >
+                            <img
+                                src={img.image}
+                                alt={img.caption || `${college.name} campus photo ${i + 1}`}
+                                loading="lazy"
+                                style={{
+                                    width: '100%', height: '100%', objectFit: 'cover',
+                                    display: 'block', transition: 'transform 0.35s ease'
+                                }}
+                            />
 
-                        {/* Zoom Overlay */}
-                        <div className="gallery-overlay" style={{
-                            position: 'absolute', inset: 0,
-                            background: 'linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 50%)',
-                            opacity: 0, transition: 'opacity 0.25s ease',
-                            display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between',
-                            padding: '1rem'
-                        }}>
-                            <span style={{ color: 'white', fontSize: '0.85rem', fontWeight: '600', maxWidth: '70%', lineHeight: '1.3' }}>
-                                {img.caption || ''}
-                            </span>
-                            <ZoomIn size={20} style={{ color: 'white', flexShrink: 0 }} />
+                            {/* Zoom Overlay */}
+                            <div className="gallery-overlay" style={{
+                                position: 'absolute', inset: 0,
+                                background: 'linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 50%)',
+                                opacity: 0, transition: 'opacity 0.25s ease',
+                                display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between',
+                                padding: '1rem'
+                            }}>
+                                <span style={{ color: 'white', fontSize: '0.85rem', fontWeight: '600', maxWidth: '70%', lineHeight: '1.3' }}>
+                                    {img.caption || ''}
+                                </span>
+                                <ZoomIn size={20} style={{ color: 'white', flexShrink: 0 }} />
+                            </div>
+
+                            {/* Primary Badge */}
+                            {img.is_primary && (
+                                <div style={{
+                                    position: 'absolute', top: '10px', left: '10px',
+                                    background: 'rgba(15, 23, 42, 0.85)', backdropFilter: 'blur(8px)',
+                                    color: 'white', fontSize: '0.7rem', fontWeight: '700',
+                                    padding: '4px 10px', borderRadius: '20px',
+                                    display: 'flex', alignItems: 'center', gap: '4px',
+                                    textTransform: 'uppercase', letterSpacing: '0.5px'
+                                }}>
+                                    <Sparkles size={11} /> Featured
+                                </div>
+                            )}
+
+                            {/* Caption bar below image */}
+                            {img.caption && (
+                                <div style={{
+                                    position: 'absolute', bottom: 0, left: 0, right: 0,
+                                    padding: '0.6rem 0.85rem',
+                                    background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)',
+                                    color: 'white', fontSize: '0.8rem', fontWeight: '600',
+                                    lineHeight: '1.3', pointerEvents: 'none'
+                                }}>
+                                    {img.caption}
+                                </div>
+                            )}
                         </div>
-
-                        {/* Primary Badge */}
-                        {img.is_primary && (
-                            <div style={{
-                                position: 'absolute', top: '10px', left: '10px',
-                                background: 'rgba(15, 23, 42, 0.85)', backdropFilter: 'blur(8px)',
-                                color: 'white', fontSize: '0.7rem', fontWeight: '700',
-                                padding: '4px 10px', borderRadius: '20px',
-                                display: 'flex', alignItems: 'center', gap: '4px',
-                                textTransform: 'uppercase', letterSpacing: '0.5px'
-                            }}>
-                                <Sparkles size={11} /> Featured
-                            </div>
-                        )}
-
-                        {/* Caption bar below image */}
-                        {img.caption && (
-                            <div style={{
-                                position: 'absolute', bottom: 0, left: 0, right: 0,
-                                padding: '0.6rem 0.85rem',
-                                background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)',
-                                color: 'white', fontSize: '0.8rem', fontWeight: '600',
-                                lineHeight: '1.3', pointerEvents: 'none'
-                            }}>
-                                {img.caption}
-                            </div>
-                        )}
+                    ))}
+                </div>
+            ) : (
+                <div style={{ textAlign: 'center', padding: '3rem 2rem', background: '#F8FAFC', borderRadius: '12px', border: '1px dashed #CBD5E1' }}>
+                    <div style={{
+                        width: '64px', height: '64px', margin: '0 auto 1rem',
+                        background: '#F1F5F9',
+                        borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center'
+                    }}>
+                        <ImageIcon size={28} style={{ color: '#94A3B8' }} />
                     </div>
-                ))}
-            </div>
+                    <h3 style={{ fontSize: '1rem', fontWeight: '700', color: '#1E293B', marginBottom: '0.25rem' }}>
+                        No Photos Available Yet
+                    </h3>
+                    <p style={{ color: '#64748B', fontSize: '0.85rem', maxWidth: '340px', margin: '0 auto' }}>
+                        Campus photos will be added soon. Check back later for a visual tour.
+                    </p>
+                </div>
+            )}
+
+            <CollegeVideoSection videos={college?.videos} />
 
             {/* ===== LIGHTBOX MODAL ===== */}
             {lightboxOpen && (

@@ -15,8 +15,8 @@ def invalidate_cache(slug=None):
     """
     if hasattr(cache, "delete_pattern"):
         if slug:
-            cache.delete_pattern(f"*{settings.CACHES['default'].get('KEY_PREFIX', '')}*{slug}*")
-        cache.delete_pattern(f"*{settings.CACHES['default'].get('KEY_PREFIX', '')}*colleges*")
+            cache.delete_pattern(f"*{slug}*")
+        cache.delete_pattern("*colleges*")
     else:
         cache.clear()
 

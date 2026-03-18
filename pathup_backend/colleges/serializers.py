@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import (
-    College, CollegeImage, Course, CollegeCourse, 
+    College, CollegeImage, CollegeVideo, Course, CollegeCourse, 
     University, Facility, Accreditation, EntranceExam, Stream, Specialization, Degree,
     Skill, Career, Job, Placement, StudentReview
 )
@@ -74,10 +74,16 @@ class CollegeImageSerializer(serializers.ModelSerializer):
         return None
 
 
+class CollegeVideoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CollegeVideo
+        fields = ['id', 'video_url', 'title']
+
 class CollegeSerializer(serializers.ModelSerializer):
     """Full serializer for detail pages — includes nested course data and gallery images."""
     courses = CollegeCourseSerializer(source='offered_courses', many=True, read_only=True)
     images = CollegeImageSerializer(many=True, read_only=True)
+    videos = CollegeVideoSerializer(many=True, read_only=True)
     logo_url = serializers.SerializerMethodField()
 
     class Meta:

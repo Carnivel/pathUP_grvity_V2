@@ -26,7 +26,7 @@ export async function getCollegesByCourseAndState(courseSlug, stateSlug, queryPa
     // Maps to backend: /courses/${courseSlug}/states/${stateSlug}/colleges/?${queryParams}
     try {
         const paramStr = queryParams ? `?${queryParams}` : '';
-        const data = await fetchAPI(`/courses/${courseSlug}/states/${stateSlug}/colleges/${paramStr}`);
+        const data = await fetchAPI(`/courses/${courseSlug}/states/${stateSlug}/colleges/${paramStr}`, { cache: 'no-store' });
         return data || { results: [], count: 0 };
     } catch (e) {
         console.warn(`Fallback: Could not fetch colleges for ${courseSlug} in ${stateSlug}`, e);
@@ -37,7 +37,7 @@ export async function getCollegesByCourseAndState(courseSlug, stateSlug, queryPa
 export async function getAllCollegesPaginated(queryParams = "") {
     try {
         const paramStr = queryParams ? `?${queryParams}` : '';
-        const data = await fetchAPI(`/colleges/${paramStr}`);
+        const data = await fetchAPI(`/colleges/${paramStr}`, { cache: 'no-store' });
         return data || { results: [], count: 0 };
     } catch (e) {
         console.warn(`Fallback: Could not fetch paginated colleges`, e);

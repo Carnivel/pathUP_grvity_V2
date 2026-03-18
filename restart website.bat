@@ -12,7 +12,11 @@ echo.
 
 echo [1/6] Stopping Next.js Frontend...
 taskkill /FI "WINDOWTITLE eq PathUp Frontend*" /F >nul 2>&1
-taskkill /IM node.exe /F >nul 2>&1
+:: DO NOT use "taskkill /IM node.exe /F" here — it kills ALL node processes
+:: including VS Code terminals, which terminates this script mid-execution.
+:: Instead, target only known PathUp-related node windows:
+taskkill /FI "WINDOWTITLE eq npm*" /F >nul 2>&1
+taskkill /FI "WINDOWTITLE eq next*" /F >nul 2>&1
 echo        Done.
 
 echo [2/6] Stopping Django Backend...
@@ -37,8 +41,7 @@ taskkill /FI "WINDOWTITLE eq Redis Server*" /F >nul 2>&1
 :: Don't kill Redis process itself yet - need it for cache flush
 echo        Done.
 
-:: Kill any remaining PathUp windows
-taskkill /FI "WINDOWTITLE eq PathUp*" /F >nul 2>&1
+
 
 echo.
 echo --- All services stopped. ---

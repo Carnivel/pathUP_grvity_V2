@@ -24,19 +24,26 @@ export default function CollegeDetailClient({ college }) {
     const tabs = [
         { id: 'overview', label: 'Overview', icon: <Building size={16} /> },
         { id: 'courses', label: 'Courses & Fees', icon: <BookOpen size={16} /> },
+        { id: 'gallery', label: 'Gallery', icon: <ImageIcon size={16} /> },
         { id: 'admissions', label: 'Admissions', icon: <FileText size={16} /> },
-        { id: 'cutoffs', label: 'Cutoffs', icon: <Target size={16} /> },
         { id: 'placements', label: 'Placements', icon: <TrendingUp size={16} /> },
+        { id: 'cutoffs', label: 'Cutoffs', icon: <Target size={16} /> },
         { id: 'scholarships', label: 'Scholarships', icon: <Award size={16} /> },
         { id: 'campus', label: 'Campus Life', icon: <Users size={16} /> },
-        { id: 'gallery', label: 'Gallery', icon: <ImageIcon size={16} /> },
         { id: 'reviews', label: 'Reviews', icon: <Star size={16} /> },
         { id: 'faq', label: 'FAQ', icon: <HelpCircle size={16} /> }
     ];
 
     return (
         <div className="custom-college-page" style={{ paddingBottom: '4rem', background: '#FAFAFB', minHeight: '100vh', fontFamily: 'var(--font-sans, system-ui, sans-serif)' }}>
-            <CollegeHero college={college} />
+            <CollegeHero 
+                college={college} 
+                onViewGallery={() => {
+                    setActiveTab('gallery');
+                    const tabBlock = document.getElementById('tab-nav-container');
+                    if (tabBlock) tabBlock.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }} 
+            />
 
             <div className="container" style={{ position: 'relative', zIndex: 20 }}>
                 <CollegeActionStrip college={college} />
@@ -48,9 +55,9 @@ export default function CollegeDetailClient({ college }) {
                     <div className="content-main" style={{ background: 'white', borderRadius: '12px', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', border: '1px solid #F1F5F9', overflow: 'hidden' }}>
 
                         {/* Sticky Tab Navigation */}
-                        <div className="tab-nav-scroll" style={{ 
+                        <div id="tab-nav-container" className="tab-nav-scroll" style={{ 
                             display: 'flex', overflowX: 'auto', padding: '1rem', borderBottom: '1px solid #F1F5F9', gap: '0.5rem', 
-                            scrollbarWidth: 'none', position: 'sticky', top: '0', background: 'white', zIndex: 100 
+                            scrollbarWidth: 'thin', position: 'sticky', top: '0', background: 'white', zIndex: 100 
                         }}>
                             {tabs.map(tab => (
                                 <button

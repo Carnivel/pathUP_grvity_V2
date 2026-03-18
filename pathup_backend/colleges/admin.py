@@ -4,7 +4,7 @@ from django.shortcuts import redirect, get_object_or_404
 from django.utils.html import format_html
 from .models import (
     University, Facility, Accreditation, EntranceExam, Stream, Specialization,
-    Degree, Course, College, CollegeImage, CollegeCourse,
+    Degree, Course, College, CollegeImage, CollegeVideo, CollegeCourse,
     Skill, Career, Job, Placement, StudentReview
 )
 
@@ -15,6 +15,11 @@ class CollegeImageInline(admin.TabularInline):
     model = CollegeImage
     extra = 1
     fields = ('image', 'caption', 'is_primary')
+
+class CollegeVideoInline(admin.TabularInline):
+    model = CollegeVideo
+    extra = 1
+    fields = ('video_url', 'title')
 
 class CollegeCourseInline(admin.TabularInline):
     """Inline for managing Courses Offered by the College"""
@@ -93,6 +98,7 @@ class CollegeAdmin(admin.ModelAdmin):
     inlines = [
         CollegeCourseInline,  # Acts as the 'Courses Offered & Placements' tab
         CollegeImageInline,   # Acts as the 'Media' tab
+        CollegeVideoInline,   # Acts as the 'Videos' tab
         StudentReviewInline,  # Acts as the 'Reviews' tab
     ]
 

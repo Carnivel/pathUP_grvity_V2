@@ -252,6 +252,17 @@ class CollegeImage(models.Model):
     def __str__(self):
         return f"Image for {self.college.name}"
 
+class CollegeVideo(models.Model):
+    college = models.ForeignKey(College, on_delete=models.CASCADE, related_name='videos')
+    video_url = models.URLField(max_length=500, help_text="Enter the full YouTube video URL")
+    title = models.CharField(max_length=255, blank=True, null=True, help_text="Optional title for the video")
+
+    class Meta:
+        ordering = ['id']
+
+    def __str__(self):
+        return f"Video for {self.college.name}"
+
 class CollegeCourse(models.Model):
     college = models.ForeignKey(College, on_delete=models.CASCADE, related_name='offered_courses', null=True, blank=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='colleges_offering', null=True, blank=True)
