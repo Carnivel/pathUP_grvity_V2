@@ -10,8 +10,7 @@ export default function CollegeHero({ college, onViewGallery }) {
 
     useEffect(() => {
         const handleScroll = () => {
-            const currentScrollPos = window.scrollY;
-            if (currentScrollPos > 120) {
+            if (window.scrollY > 20) {
                 setIsScrolled(true);
             } else {
                 setIsScrolled(false);
@@ -54,7 +53,6 @@ export default function CollegeHero({ college, onViewGallery }) {
             return (
                 <div style={{ position: 'relative', gridRow: '1 / 3' }}>
                     <img src={galleryImages[0]} alt={`${college.name} campus`} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px' }} />
-                    {backButton}
                     {photoCountButton}
                 </div>
             );
@@ -65,7 +63,6 @@ export default function CollegeHero({ college, onViewGallery }) {
                 <>
                     <div style={{ position: 'relative' }}>
                         <img src={galleryImages[0]} alt={`${college.name} campus`} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px 0 0 12px' }} />
-                        {backButton}
                     </div>
                     <div style={{ position: 'relative' }}>
                         <img src={galleryImages[1]} alt={`${college.name} building`} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '0 12px 12px 0' }} />
@@ -80,7 +77,6 @@ export default function CollegeHero({ college, onViewGallery }) {
                 <>
                     <div style={{ position: 'relative', gridRow: '1 / 3' }}>
                         <img src={galleryImages[0]} alt={`${college.name} campus`} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px 0 0 12px' }} />
-                        {backButton}
                     </div>
                     <div style={{ position: 'relative' }}>
                         <img src={galleryImages[1]} alt={`${college.name} building`} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '0 12px 0 0' }} />
@@ -98,7 +94,6 @@ export default function CollegeHero({ college, onViewGallery }) {
             <>
                 <div style={{ position: 'relative', gridRow: '1 / 3' }}>
                     <img src={galleryImages[0]} alt={`${college.name} campus`} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '12px 0 0 12px' }} />
-                    {backButton}
                 </div>
                 <div style={{ position: 'relative' }}>
                     <img src={galleryImages[1]} alt={`${college.name} building`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -118,34 +113,30 @@ export default function CollegeHero({ college, onViewGallery }) {
         <button 
             onClick={() => router.back()}
             style={{
-                position: isScrolled ? 'fixed' : 'absolute',
-                top: isScrolled ? '90px' : '20px',
+                position: 'fixed',
+                top: isScrolled ? '100px' : '100px', 
                 bottom: 'auto',
-                left: '20px',
+                left: '24px',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 gap: isScrolled ? '0' : '10px', 
                 background: isScrolled ? 'rgba(15, 23, 42, 0.95)' : 'rgba(15, 23, 42, 0.65)',
                 backdropFilter: 'blur(16px)',
                 border: '1px solid rgba(255,255,255,0.15)', color: 'white',
-                padding: isScrolled ? '14px' : '10px 18px',
+                padding: isScrolled ? '14px' : '10px 20px',
                 borderRadius: isScrolled ? '50%' : '12px',
-                width: isScrolled ? '56px' : 'auto',
-                height: isScrolled ? '56px' : 'auto',
+                width: isScrolled ? '54px' : 'auto',
+                height: isScrolled ? '54px' : 'auto',
                 fontSize: '0.95rem',
-                fontWeight: '800', cursor: 'pointer', transition: 'all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-                zIndex: 5000, boxShadow: isScrolled ? '0 10px 30px rgba(0,0,0,0.5)' : '0 4px 12px rgba(0,0,0,0.2)',
+                fontWeight: '800', cursor: 'pointer', transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+                zIndex: 9999, 
+                boxShadow: isScrolled ? '0 10px 40px rgba(0,0,0,0.4)' : '0 4px 12px rgba(0,0,0,0.2)',
                 letterSpacing: '0.01em',
                 overflow: 'hidden'
             }}
             className="dynamic-back-btn"
         >
-            <ArrowLeft size={isScrolled ? 26 : 18} strokeWidth={3} />
-            <span style={{ 
-                maxWidth: isScrolled ? '0px' : '100px', 
-                opacity: isScrolled ? 0 : 1,
-                transition: 'all 0.4s ease',
-                whiteSpace: 'nowrap'
-            }}>Back</span>
+            <ArrowLeft size={isScrolled ? 24 : 18} strokeWidth={3} />
+            {!isScrolled && <span style={{ whiteSpace: 'nowrap' }}>Back</span>}
         </button>
     );
 
@@ -176,6 +167,7 @@ export default function CollegeHero({ college, onViewGallery }) {
             }}>
                 {renderGallery()}
             </div>
+            {backButton}
 
             {/* Info Container */}
             <div className="container" style={{ position: 'relative', zIndex: 10, padding: '2.5rem 1.5rem 4rem 1.5rem', marginTop: '-40px' }}>

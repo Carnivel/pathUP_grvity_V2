@@ -164,6 +164,50 @@
     border: 1px solid;
 }
 
+/* Why Choose Section */
+.why-choose-section {
+    background: white;
+    padding: 2rem !important;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border);
+    margin-bottom: var(--spacing-2xl);
+    box-shadow: var(--shadow-sm);
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.benefit-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: var(--radius-lg);
+    background: var(--color-bg);
+    transition: all var(--transition-normal);
+    border-left: 3px solid transparent;
+}
+
+.benefit-item:hover {
+    transform: translateX(5px);
+    background: white;
+    box-shadow: var(--shadow-md);
+    border-left-color: var(--accent);
+}
+
+.benefit-icon {
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+@media (min-width: 768px) {
+    .benefits-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
 /* Auto-Generated Roadmap Layout */
 .roadmap-intro {
     color: var(--color-text-secondary);

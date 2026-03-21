@@ -179,6 +179,41 @@ const CareerDetails = async ({ params }) => {
                                 </div>
                             </section>
 
+                            {/* Why Choose Section */}
+                            {career.whyChoose && career.whyChoose.length > 0 && (
+                                <section className="detail-section why-choose-section">
+                                    <div className="section-header-box" style={{ borderBottom: `2px solid ${career.color}20`, marginBottom: '1.5rem', paddingBottom: '0.75rem' }}>
+                                        <h2 style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', margin: 0 }}>
+                                            <Zap size={28} color={career.color} fill={career.color} style={{ opacity: 0.8 }} /> 
+                                            Why Choose {career.title}?
+                                        </h2>
+                                    </div>
+                                    
+                                    <div className="benefits-grid">
+                                        {career.whyChoose.map((benefit, idx) => {
+                                            const [title, description] = benefit.includes(':') ? benefit.split(':') : [benefit, ''];
+                                            return (
+                                                <div key={idx} className="benefit-item" style={{ '--accent': career.color }}>
+                                                    <div className="benefit-icon">
+                                                        <CheckCircle2 size={20} color={career.color} />
+                                                    </div>
+                                                    <div className="benefit-content">
+                                                        {description ? (
+                                                            <>
+                                                                <strong style={{ color: 'var(--color-text-primary)', display: 'block', fontSize: '1.05rem', marginBottom: '0.2rem' }}>{title}</strong>
+                                                                <p style={{ margin: 0, fontSize: '0.95rem', color: 'var(--color-text-secondary)', lineHeight: '1.5' }}>{description.trim()}</p>
+                                                            </>
+                                                        ) : (
+                                                            <p style={{ margin: 0, fontSize: '1rem', fontWeight: '500', color: 'var(--color-text-primary)' }}>{title}</p>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                </section>
+                            )}
+
                             {/* Roadmap Section */}
                             <section className="detail-section roadmap-section">
                                 <h2>Career Roadmap</h2>
