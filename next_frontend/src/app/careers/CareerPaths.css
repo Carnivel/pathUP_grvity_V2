@@ -223,9 +223,15 @@
     font-weight: 600;
 }
 
-.career-card h3 {
+.career-card-title {
     font-size: 1.35rem;
     margin-bottom: var(--spacing-sm);
+    transition: color var(--transition-fast);
+    cursor: pointer;
+}
+
+.career-card:hover .career-card-title {
+    color: var(--accent, var(--color-primary));
 }
 
 .career-desc {

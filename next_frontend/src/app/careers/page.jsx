@@ -96,7 +96,9 @@ const CareerPaths = () => {
                                         </div>
                                     </div>
 
-                                    <h3>{career.title}</h3>
+                                    <Link href={`/careers/${career.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                        <h3 className="career-card-title">{career.title}</h3>
+                                    </Link>
                                     <p className="career-desc">{career.description}</p>
 
                                     <div className="career-meta">
