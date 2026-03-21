@@ -522,11 +522,37 @@ select,
 }
 
 /* === SELECT2 (Jazzmin uses this for dropdowns) === */
+.select2-container {
+    width: 100% !important;
+    min-width: 200px !important; /* Ensure a minimum usable width */
+}
+
 .select2-container--default .select2-selection--single,
 .select2-container--default .select2-selection--multiple {
     background-color: #2b3035 !important;
     border-color: #495057 !important;
     color: #e9ecef !important;
+    min-height: 38px !important; /* Match other input heights */
+    display: flex !important;
+    align-items: center !important;
+}
+
+/* Ensure tabular inlines don't clip the dropdowns and force column width */
+.tabular.inline-related .module .form-row td {
+    overflow: visible !important;
+    vertical-align: middle !important;
+}
+
+.tabular.inline-related .module .form-row td.field-course,
+.tabular.inline-related .module .form-row td.field-entrance_exam {
+    min-width: 280px !important; /* Specifically target the course and exam columns */
+}
+
+/* Fix the dropdown results list width */
+.select2-dropdown {
+    background-color: #212529 !important;
+    border-color: #495057 !important;
+    min-width: 280px !important;
 }
 .select2-container--default .select2-results__option {
     background-color: #212529 !important;
