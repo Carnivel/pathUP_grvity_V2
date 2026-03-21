@@ -8,7 +8,7 @@ import {
     BarChart3, Megaphone, Landmark, Users, Truck, Target, Clipboard, Rocket, BarChart, Lightbulb,
     Palette, Building2, PenTool, Image as ImageIcon, Video, Scissors, Home, Box, Type,
     Scale, Shield, FileText, Percent, Award, Music,
-    Layers, Zap, Eye, MessageSquare, Dna, PieChart, Map, Layout
+    Layers, Zap, Eye, MessageSquare, Dna, PieChart, Map, Layout, Clock, Monitor
 } from 'lucide-react';
 import { careers } from '../../../data/careersData';
 import './CareerDetails.css';
@@ -110,9 +110,19 @@ const CareerDetails = async ({ params }) => {
             currency: 'INR',
             duration: 'P1Y'
         },
-        url: `${siteUrl}/careers/${slug}`,
         skills: career.skills?.join(', ')
     };
+
+    const mapping = {
+        'tech': 'computer',
+        'medical': 'medical',
+        'business': 'management',
+        'creative': 'design',
+        'law': 'law',
+        'data': 'computer'
+    };
+    const stream = mapping[career.category] || 'all';
+    const collegeSearchUrl = `/colleges?stream=${stream}&name=${encodeURIComponent(career.title)}`;
 
     return (
         <>
@@ -167,16 +177,6 @@ const CareerDetails = async ({ params }) => {
                                     </div>
                                 )}
 
-                                <div className="skills-highlight-box" style={{ borderColor: `${career.color}50`, background: `${career.color}0A` }}>
-                                    <h3><Target size={20} color={career.color} /> Core Skills Required</h3>
-                                    <div className="detail-skills-list">
-                                        {career.skills?.map(skill => (
-                                            <span key={skill} className="detail-skill-tag" style={{ color: career.color, borderColor: `${career.color}40`, background: 'white' }}>
-                                                {skill}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
                             </section>
 
                             {/* Why Choose Section */}
@@ -214,6 +214,140 @@ const CareerDetails = async ({ params }) => {
                                 </section>
                             )}
 
+                            {career.dayInTheLife && career.dayInTheLife.length > 0 && (
+                                <section className="detail-section day-in-life-section">
+                                    <div className="section-header-box" style={{ borderBottom: `2px solid ${career.color}20`, marginBottom: '1.5rem', paddingBottom: '0.75rem' }}>
+                                        <h2 style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', margin: 0 }}>
+                                            <Clock size={28} color={career.color} />
+                                            A Day in the Life
+                                        </h2>
+                                    </div>
+                                    <div className="day-timeline">
+                                        {career.dayInTheLife.map((block, idx) => (
+                                            <div key={idx} className="day-block" style={{ borderLeftColor: career.color }}>
+                                                <div className="time-badge" style={{ backgroundColor: `${career.color}15`, color: career.color }}>{block.timePhase}</div>
+                                                <h4 style={{ color: 'var(--color-text-primary)', marginBottom: '0.3rem' }}>{block.title}</h4>
+                                                <p style={{ margin: 0, fontSize: '0.95rem', color: 'var(--color-text-secondary)' }}>{block.description}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </section>
+                            )}
+
+                            {career.skillProgression && (
+                                <section className="detail-section skill-progression-section">
+                                    <div className="section-header-box" style={{ borderBottom: `2px solid ${career.color}20`, marginBottom: '1.5rem', paddingBottom: '0.75rem' }}>
+                                        <h2 style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', margin: 0 }}>
+                                            <Layers size={28} color={career.color} />
+                                            Skill Progression Path
+                                        </h2>
+                                    </div>
+                                    <div className="progression-container">
+                                        {['beginner', 'intermediate', 'advanced'].map((level, idx) => (
+                                            career.skillProgression[level] && career.skillProgression[level].length > 0 && (
+                                                <div key={level} className="progression-step">
+                                                    <div className="step-header">
+                                                        <span className="step-number" style={{ background: career.color }}>{idx + 1}</span>
+                                                        <h4 style={{ textTransform: 'capitalize', margin: 0, color: 'var(--color-text-primary)' }}>{level}</h4>
+                                                    </div>
+                                                    <ul className="progression-list">
+                                                        {career.skillProgression[level].map((skill, i) => (
+                                                            <li key={i}><ChevronRight size={14} color={career.color} style={{ minWidth: '14px', marginTop: '2px' }} /> <span>{skill}</span></li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            )
+                                        ))}
+                                    </div>
+                                </section>
+                            )}
+
+                            {career.salaryDetails && (
+                                <section className="detail-section salary-section">
+                                    <div className="section-header-box" style={{ borderBottom: `2px solid ${career.color}20`, marginBottom: '1.5rem', paddingBottom: '0.75rem' }}>
+                                        <h2 style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', margin: 0 }}>
+                                            <DollarSign size={28} color={career.color} />
+                                            Detailed Salary Breakdown
+                                        </h2>
+                                    </div>
+                                    <div className="salary-cards-grid">
+                                        <div className="salary-card" style={{ '--accent-color': career.color }}>
+                                            <span className="salary-level">Entry-Level</span>
+                                            <strong className="salary-amount">{career.salaryDetails.entry}</strong>
+                                        </div>
+                                        <div className="salary-card" style={{ '--accent-color': career.color }}>
+                                            <span className="salary-level">Mid-Level</span>
+                                            <strong className="salary-amount">{career.salaryDetails.mid}</strong>
+                                        </div>
+                                        <div className="salary-card" style={{ '--accent-color': career.color }}>
+                                            <span className="salary-level">Senior-Level</span>
+                                            <strong className="salary-amount">{career.salaryDetails.senior}</strong>
+                                        </div>
+                                    </div>
+                                    {(career.salaryDetails.mncVsStartup || career.salaryDetails.specializationBonus) && (
+                                        <div className="salary-context" style={{ backgroundColor: `${career.color}08`, borderLeft: `3px solid ${career.color}` }}>
+                                            {career.salaryDetails.mncVsStartup && <p style={{ marginBottom: career.salaryDetails.specializationBonus ? '0.5rem' : '0' }}><strong>MNC vs Startup:</strong> {career.salaryDetails.mncVsStartup}</p>}
+                                            {career.salaryDetails.specializationBonus && <p style={{ margin: 0 }}><strong>Specialization Bonus:</strong> {career.salaryDetails.specializationBonus}</p>}
+                                        </div>
+                                    )}
+                                </section>
+                            )}
+
+                            {career.futureDemand && (
+                                <section className="detail-section demand-section">
+                                    <div className="section-header-box" style={{ borderBottom: `2px solid ${career.color}20`, marginBottom: '1.5rem', paddingBottom: '0.75rem' }}>
+                                        <h2 style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', margin: 0 }}>
+                                            <TrendingUp size={28} color={career.color} />
+                                            Future Demand & Trends
+                                        </h2>
+                                    </div>
+                                    <div className="demand-stats" style={{ marginBottom: '1.5rem' }}>
+                                        <span className="demand-badge" style={{ backgroundColor: `${career.color}15`, color: career.color, padding: '6px 14px', borderRadius: '30px', fontWeight: '700', fontSize: '0.9rem', display: 'inline-block' }}>
+                                            Demand: {career.futureDemand.level}
+                                        </span>
+                                    </div>
+                                    <div className="demand-text-grid">
+                                        <div className="demand-text-box">
+                                            <h4><Globe size={18} color={career.color} /> 5-10 Year Scope</h4>
+                                            <p>{career.futureDemand.scope}</p>
+                                        </div>
+                                        {career.futureDemand.aiImpact && (
+                                        <div className="demand-text-box">
+                                            <h4><Cpu size={18} color={career.color} /> AI & Automation Impact</h4>
+                                            <p>{career.futureDemand.aiImpact}</p>
+                                        </div>
+                                        )}
+                                    </div>
+                                </section>
+                            )}
+
+                                {career.skills && career.skills.length > 0 && (
+                                    <div className="skills-highlight-box" style={{ borderColor: `${career.color}50`, background: `${career.color}0A`, marginBottom: '2rem' }}>
+                                        <h3><Target size={20} color={career.color} /> Core Skills Required</h3>
+                                        <div className="detail-skills-list">
+                                            {career.skills.map(skill => (
+                                                <span key={skill} className="detail-skill-tag" style={{ color: career.color, borderColor: `${career.color}40`, background: 'white' }}>
+                                                    {skill}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+ 
+                                <div className="cta-pre-roadmap" style={{ marginTop: '3rem', marginBottom: '2.5rem', textAlign: 'center', padding: '2.5rem', backgroundColor: `${career.color}0A`, borderRadius: '16px', border: `1px solid ${career.color}20` }}>
+                                    <h3 style={{ marginBottom: '0.8rem', color: 'var(--color-text-primary)' }}>Find Your Ideal College</h3>
+                                    <p style={{ marginBottom: '1.5rem', color: 'var(--color-text-secondary)', maxWidth: '500px', marginInline: 'auto' }}>
+                                        Discover top institutions offering programs in {career.title} and allied paths.
+                                    </p>
+                                    <Link 
+                                        href={collegeSearchUrl}
+                                        className="btn-primary" 
+                                        style={{ backgroundColor: career.color, borderColor: career.color, display: 'inline-flex', textDecoration: 'none', padding: '14px 40px', fontWeight: '700', borderRadius: '50px', boxShadow: `0 10px 20px ${career.color}30` }}
+                                    >
+                                        <Building2 size={22} style={{ marginRight: '10px' }} /> Explore Colleges
+                                    </Link>
+                                </div>
+
                             {/* Roadmap Section */}
                             <section className="detail-section roadmap-section">
                                 <h2>Career Roadmap</h2>
@@ -233,6 +367,7 @@ const CareerDetails = async ({ params }) => {
                                         </div>
                                     ))}
                                 </div>
+                                
                             </section>
                         </div>
 
@@ -244,8 +379,15 @@ const CareerDetails = async ({ params }) => {
                                     <h3>Education Pathway</h3>
                                 </div>
                                 <p className="education-req">{career.education}</p>
-                                <Link href={`/courses?search=${encodeURIComponent(career.title)}`} className="btn-secondary full-width" style={{ color: career.color, borderColor: career.color, display: 'flex', textDecoration: 'none' }}>
+                                <Link href={`/courses?search=${encodeURIComponent(career.title)}`} className="btn-secondary full-width" style={{ color: career.color, borderColor: career.color, display: 'flex', textDecoration: 'none', marginBottom: '0.8rem' }}>
                                     Find Courses
+                                </Link>
+                                <Link 
+                                    href={collegeSearchUrl} 
+                                    className="btn-primary full-width" 
+                                    style={{ backgroundColor: career.color, borderColor: career.color, display: 'flex', textDecoration: 'none', justifyContent: 'center', alignItems: 'center', gap: '8px' }}
+                                >
+                                    <Building2 size={18} /> Find Colleges
                                 </Link>
                             </div>
 
@@ -295,6 +437,88 @@ const CareerDetails = async ({ params }) => {
                                             </span>
                                         ))}
                                     </div>
+                                </div>
+                            )}
+                            {career.topCompanies && career.topCompanies.length > 0 && (
+                                <div className="career-card-vertical">
+                                    <div className="vertical-header">
+                                        <Building2 size={24} color={career.color} />
+                                        <h3>Top Employers</h3>
+                                    </div>
+                                    <div className="detail-skills-list" style={{ marginTop: '0.8rem' }}>
+                                        {career.topCompanies.map((comp, idx) => (
+                                            <span key={idx} className="detail-skill-tag" style={{ border: `1px solid var(--color-border)`, background: 'white', color: 'var(--color-text-secondary)', padding: '4px 10px', fontSize: '0.85rem' }}>
+                                                {comp}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {career.personalityTraits && career.personalityTraits.length > 0 && (
+                                <div className="career-card-vertical">
+                                    <div className="vertical-header">
+                                        <Smile size={24} color={career.color} />
+                                        <h3>Key Personality Traits</h3>
+                                    </div>
+                                    <ul className="top-roles-list" style={{ marginTop: '0.5rem' }}>
+                                        {career.personalityTraits.map((trait, idx) => (
+                                            <li key={idx} style={{ marginBottom: '0.5rem' }}>
+                                                <ChevronRight size={16} color={career.color} /> {trait}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+
+                            {career.certifications && career.certifications.length > 0 && (
+                                <div className="career-card-vertical">
+                                    <div className="vertical-header">
+                                        <Award size={24} color={career.color} />
+                                        <h3>Valued Certifications</h3>
+                                    </div>
+                                    <ul className="top-roles-list" style={{ marginTop: '0.5rem' }}>
+                                        {career.certifications.map((cert, idx) => (
+                                            <li key={idx} style={{ marginBottom: '0.5rem', lineHeight: '1.4' }}>
+                                                <ChevronRight size={16} color={career.color} style={{ minWidth: '16px', marginTop: '2px' }} /> <span>{cert}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+
+                            {career.workFlexibility && (
+                                <div className="career-card-vertical">
+                                    <div className="vertical-header">
+                                        <Monitor size={24} color={career.color} />
+                                        <h3>Work Flexibility</h3>
+                                    </div>
+                                    <div style={{ marginTop: '0.8rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '0.5rem', borderBottom: '1px solid var(--color-border)' }}>
+                                            <span style={{ color: 'var(--color-text-secondary)' }}>Remote Work</span>
+                                            <strong style={{ color: 'var(--color-text-primary)' }}>{career.workFlexibility.remote}</strong>
+                                        </div>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                            <span style={{ color: 'var(--color-text-secondary)' }}>Freelance</span>
+                                            <strong style={{ color: 'var(--color-text-primary)' }}>{career.workFlexibility.freelance}</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+                            {career.relatedCareers && career.relatedCareers.length > 0 && (
+                                <div className="career-card-vertical">
+                                    <div className="vertical-header">
+                                        <Briefcase size={24} color={career.color} />
+                                        <h3>Related Careers</h3>
+                                    </div>
+                                    <ul className="top-roles-list" style={{ marginTop: '0.5rem' }}>
+                                        {career.relatedCareers.map((rel, idx) => (
+                                            <li key={idx} style={{ marginBottom: '0.5rem', lineHeight: '1.4' }}>
+                                                <ChevronRight size={16} color={career.color} style={{ minWidth: '16px', marginTop: '2px' }} /> <span>{rel}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
                                 </div>
                             )}
                         </div>

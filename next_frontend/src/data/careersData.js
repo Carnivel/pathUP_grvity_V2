@@ -24,7 +24,32 @@ export const careers = [
         ],
         isRightForYou: ["You belong here if you enjoy solving logical puzzles and building things from scratch.","You are a lifelong learner who is excited by rapidly changing technology.","You possess strong analytical skills and can focus on complex tasks for long periods.","You enjoy collaborating in teams to solve massive real-world problems.","You have a passion for creating tools that make peoples lives easier."],
         importantNote: "Continuous learning and adapting to new frameworks is critical.",
-        industriesHiring: ["Tech & IT","Finance & Fintech","Healthcare Tech","E-commerce","Automotive"]
+        industriesHiring: ["Tech & IT","Finance & Fintech","Healthcare Tech","E-commerce","Automotive"],
+        dayInTheLife: [
+            { timePhase: 'Morning', title: 'Standup & Code Review', description: 'Align with the product team on daily goals, review pull requests, and plan architectural changes or bug fixes.' },
+            { timePhase: 'Afternoon', title: 'Deep Work & Development', description: 'Write core feature logic in React or Node.js, run unit tests, and optimize database queries.' },
+            { timePhase: 'Evening', title: 'Deployment & Documentation', description: 'Push code to staging, update technical documentation, and triage low-priority tickets.' }
+        ],
+        skillProgression: {
+            beginner: ["HTML/CSS/JS", "Basic Git", "Simple APIs", "Debugging"],
+            intermediate: ["React/Node.js", "SQL/NoSQL", "Docker", "REST/GraphQL"],
+            advanced: ["System Design", "Microservices", "Cloud Architecture", "Performance Profiling"]
+        },
+        salaryDetails: {
+            entry: '₹4-8 LPA', mid: '₹12-25 LPA', senior: '₹30-60+ LPA',
+            mncVsStartup: 'Startups often offer higher initial pay + equity, while MNCs provide better job security and structured hikes.',
+            specializationBonus: 'AI/ML engineering or Web3 skills can boost base salary by 30-50%.'
+        },
+        futureDemand: {
+            level: 'Very High',
+            scope: 'Software will continue to eat the world. Demand for full-stack and specialized backend engineers remains immense.',
+            aiImpact: 'AI tools (like Copilot) are automating boilerplate code. Engineers must evolve into "system thinkers" rather than pure typists.'
+        },
+        topCompanies: ["Google", "Microsoft", "Amazon", "Innovaccer", "Cred", "Swiggy"],
+        personalityTraits: ["Logical Thinker", "Patient Problem Solver", "Continuous Learner"],
+        certifications: ["AWS Certified Developer", "Meta Front-End/Back-End Certs"],
+        workFlexibility: { remote: 'Excellent', freelance: 'Excellent' },
+        relatedCareers: ["Cloud Architect", "Data Scientist", "DevOps Engineer"]
     },
     {
         id: 10, title: 'Cyber Security', category: 'tech', icon: 'shieldcheck', color: '#3B82F6',
@@ -41,7 +66,32 @@ export const careers = [
             "Exciting Day-to-Day: No two days are the same when you're hunting for new threats.",
             "High Impact: You are the last line of defense for a company's most valuable secrets."
         ],
-        industriesHiring: ["Banking & Finance","Government & Defense","Tech & SaaS","Healthcare","Consulting"]
+        industriesHiring: ["Banking & Finance","Government & Defense","Tech & SaaS","Healthcare","Consulting"],
+        dayInTheLife: [
+            { timePhase: 'Morning', title: 'Threat Monitoring', description: 'Review security logs, analyze SIEM alerts, and investigate any suspicious nighttime network activity.' },
+            { timePhase: 'Afternoon', title: 'Vulnerability Scanning', description: 'Conduct penetration testing on new application updates and patch known server vulnerabilities.' },
+            { timePhase: 'Evening', title: 'Policy Updating', description: 'Document incident reports, update firewall rules, and brief the engineering team on security compliances.' }
+        ],
+        skillProgression: {
+            beginner: ["Networking Basics", "Linux Administration", "Basic Scripting (Python)"],
+            intermediate: ["Penetration Testing", "Firewall Configuration", "SIEM Tools (Splunk)"],
+            advanced: ["Cryptography", "Incident Response", "Zero Trust Architecture", "Reverse Engineering"]
+        },
+        salaryDetails: {
+            entry: '₹5-9 LPA', mid: '₹15-28 LPA', senior: '₹35-70+ LPA',
+            mncVsStartup: 'Banks and large MNCs pay a premium for compliance experts, while tech startups heavily reward proactive ethical hackers.',
+            specializationBonus: 'Cloud Security and Smart Contract auditing command the absolute highest premiums.'
+        },
+        futureDemand: {
+            level: 'Critical (Extreme)',
+            scope: 'As ransomware and data breaches explode globally, every mid-to-large company now requires dedicated security teams.',
+            aiImpact: 'AI is a double-edged sword: hackers use it to write malware faster, while defenders use it to detect anomalies instantly.'
+        },
+        topCompanies: ["Palo Alto Networks", "CrowdStrike", "IBM Security", "Banks (HDFC, ICICI)", "Big 4 Consulting"],
+        personalityTraits: ["Highly Suspicious", "Detail-Oriented", "Calm Under Extreme Pressure"],
+        certifications: ["CompTIA Security+", "CEH (Certified Ethical Hacker)", "CISSP (Advanced)"],
+        workFlexibility: { remote: 'Good', freelance: 'Good (Bug Bounty Programs)' },
+        relatedCareers: ["Network Engineer", "Cloud Architect", "Blockchain Developer"]
     },
     {
         id: 101, title: 'Cloud Architect', category: 'tech', icon: 'cloud', color: '#0EA5E9',
@@ -58,7 +108,32 @@ export const careers = [
             "Elite Pay: Cloud Architects are among the highest-paid professionals in tech.",
             "Remote Work King: Work for global companies from your home office effortlessly."
         ],
-        industriesHiring: ["Cloud Providers","Telecom","Streaming Services","E-commerce","SaaS"]
+        industriesHiring: ["Cloud Providers","Telecom","Streaming Services","E-commerce","SaaS"],
+        dayInTheLife: [
+            { timePhase: 'Morning', title: 'Cost & Performance Review', description: 'Analyze cloud billing reports, monitor server latencies, and optimize resource allocations across AWS/Azure.' },
+            { timePhase: 'Afternoon', title: 'Infrastructure Design', description: 'Draft architectural diagrams for new microservices, write Terraform scripts, and configure load balancers.' },
+            { timePhase: 'Evening', title: 'Security & Backup Checks', description: 'Ensure disaster recovery protocols are active, update IAM permissions, and review scaling policies.' }
+        ],
+        skillProgression: {
+            beginner: ["Linux/Bash", "Networking (TCP/IP, DNS)", "Basic Cloud Services (EC2, S3)"],
+            intermediate: ["Docker/Kubernetes", "CI/CD Pipelines", "Terraform (IaC)", "Database Migration"],
+            advanced: ["Multi-Cloud Strategy", "Serverless Architecture", "Enterprise Security", "Cost Optimization at Scale"]
+        },
+        salaryDetails: {
+            entry: '₹7-12 LPA', mid: '₹18-35 LPA', senior: '₹40-80+ LPA',
+            mncVsStartup: 'MNCs require architects to manage massive legacy migrations. Startups need architects to build scalable systems from day one.',
+            specializationBonus: 'Mastery of Kubernetes (CKA) and multi-cloud strategies significantly bumps salary.'
+        },
+        futureDemand: {
+            level: 'Very High',
+            scope: 'The global shift to cloud computing is permanent. Companies now need experts to manage hybrid and multi-cloud environments.',
+            aiImpact: 'AI will help automate scaling and cost management, but human architects are needed to design the foundational system topology.'
+        },
+        topCompanies: ["Amazon Web Services (AWS)", "Microsoft (Azure)", "Google Cloud", "TCS", "Accenture"],
+        personalityTraits: ["Big Picture Thinker", "Process-Oriented", "Excellent Communicator"],
+        certifications: ["AWS Solutions Architect", "GCP Professional Architect", "CKA (Kubernetes)"],
+        workFlexibility: { remote: 'Excellent', freelance: 'Good' },
+        relatedCareers: ["DevOps Engineer", "Software Engineering", "Cyber Security"]
     },
     {
         id: 102, title: 'Blockchain Developer', category: 'tech', icon: 'blocks', color: '#F59E0B',
@@ -75,7 +150,32 @@ export const careers = [
             "Global Community: Join a passionate, global community of developers and innovators.",
             "Security First: Master the art of writing code that is immutable and unhackable."
         ],
-        industriesHiring: ["Fintech & DeFi","Gaming & Metaverse","Supply Chain","Venture Capital","Cybersecurity"]
+        industriesHiring: ["Fintech & DeFi","Gaming & Metaverse","Supply Chain","Venture Capital","Cybersecurity"],
+        dayInTheLife: [
+            { timePhase: 'Morning', title: 'Market & Protocol Review', description: 'Check updates on Ethereum/Solana core protocols, review gas fees, and discuss tokenomics with the product team.' },
+            { timePhase: 'Afternoon', title: 'Smart Contract Coding', description: 'Write Web3 interactions using Solidity or Rust, run extensive local testnets, and optimize code to reduce transaction costs.' },
+            { timePhase: 'Evening', title: 'Auditing & Deployment', description: 'Peer-review contracts for vulnerabilities and deploy test versions to testnets.' }
+        ],
+        skillProgression: {
+            beginner: ["JavaScript/TypeScript", "Cryptography Basics", "Blockchain Fundamentals"],
+            intermediate: ["Solidity/Rust", "Web3.js/Ethers.js", "Truffle/Hardhat", "Writing basic NFTs"],
+            advanced: ["DeFi Protocol Architecture", "Smart Contract Auditing", "Zero-Knowledge Proofs", "Layer 2 Scaling"]
+        },
+        salaryDetails: {
+            entry: '₹8-15 LPA', mid: '₹20-45 LPA', senior: '₹60-100+ LPA (Often Paid in Crypto/USDC)',
+            mncVsStartup: 'Web3 is heavily dominated by well-funded remote startups and DAOs rather than traditional MNCs.',
+            specializationBonus: 'Auditors (security experts who find bugs in smart contracts) can charge massive premiums.'
+        },
+        futureDemand: {
+            level: 'High (High Volatility)',
+            scope: 'Demand peaks during bull markets but remains strong for core infrastructure builders regardless of market cycles.',
+            aiImpact: 'AI assists in writing boilerplate smart contracts, but rigorous human auditing is mandatory since millions of dollars are locked in code.'
+        },
+        topCompanies: ["Polygon", "ConsenSys", "Coinbase", "Binance", "Global Remote DAOs"],
+        personalityTraits: ["Risk-Aware", "Mathematical Thinker", "Comfortable with Ambiguity"],
+        certifications: ["Certified Blockchain Developer (CBD)", "Ethereum Developer Bootcamp"],
+        workFlexibility: { remote: 'Ultimate', freelance: 'Ultimate' },
+        relatedCareers: ["Software Engineering", "Cyber Security", "Fintech Analyst"]
     },
     {
         id: 103, title: 'Game Developer', category: 'tech', icon: 'gamepad', color: '#8B5CF6',
@@ -92,7 +192,32 @@ export const careers = [
             "Fast-Growing Market: Gaming is now bigger than the movie and music industries combined.",
             "See Your Work Live: Nothing beats seeing your game on a shelf or App Store."
         ],
-        industriesHiring: ["Game Studios","AR/VR Tech","Education/EdTech","Entertainment","Simulation/Military"]
+        industriesHiring: ["Game Studios","AR/VR Tech","Education/EdTech","Entertainment","Simulation/Military"],
+        dayInTheLife: [
+            { timePhase: 'Morning', title: 'Playtesting & Sync', description: 'Play the latest build of the game, log visual glitches, and align with 3D artists and game designers.' },
+            { timePhase: 'Afternoon', title: 'Engine Programming', description: 'Write C# scripts in Unity or C++ in Unreal to control NPC behavior, physics, or inventory systems.' },
+            { timePhase: 'Evening', title: 'Optimization & Profiling', description: 'Optimize code to ensure the game runs smoothly at 60fps on lower-end hardware.' }
+        ],
+        skillProgression: {
+            beginner: ["C#/C++ Basics", "Math (Vectors/Trigonometry)", "Basic Game Loops", "Unity/Unreal UI"],
+            intermediate: ["Physics Engines", "Animation Controllers", "Shader Programming", "Asset Optimization"],
+            advanced: ["Custom Rendering Pipelines", "Multiplayer Networking", "Advanced AI (Behavior Trees)", "Cross-Platform Porting"]
+        },
+        salaryDetails: {
+            entry: '₹4-7 LPA', mid: '₹10-20 LPA', senior: '₹25-45+ LPA',
+            mncVsStartup: 'Indie studios offer creative freedom but lower pay. AAA studios (MNCs) offer stability and higher pay but intense crunch periods.',
+            specializationBonus: 'Unreal Engine C++ developers and Multiplayer Network Engineers are highly sought after.'
+        },
+        futureDemand: {
+            level: 'Moderate to High',
+            scope: 'The gaming industry is massive, but highly competitive. Mobile gaming and AR/VR are driving bulk hiring.',
+            aiImpact: 'AI will revolutionize asset creation (auto-generating 3D models and textures), allowing small teams to build massive games.'
+        },
+        topCompanies: ["Rockstar Games", "Ubisoft", "EA", "Zynga", "Epic Games", "Mobile Game Startups"],
+        personalityTraits: ["Creative", "Highly Passionate", "Visually Oriented"],
+        certifications: ["Unity Certified Programmer", "Unreal Engine Authorized Courses"],
+        workFlexibility: { remote: 'Good', freelance: 'Excellent (Indie dev)' },
+        relatedCareers: ["AR/VR Developer", "Software Engineering", "UI/UX Designer"]
     },
     {
         id: 104, title: 'DevOps Engineer', category: 'tech', icon: 'server', color: '#10B981',
@@ -109,7 +234,32 @@ export const careers = [
             "Work with Modern Tech: Use cutting-edge tools like Docker, Kubernetes, and AWS.",
             "High Career Stability: Every software-driven company needs a strong DevOps team."
         ],
-        industriesHiring: ["SaaS & Cloud","Fintech","E-commerce","Healthcare Tech","Telecommunications"]
+        industriesHiring: ["SaaS & Cloud","Fintech","E-commerce","Healthcare Tech","Telecommunications"],
+        dayInTheLife: [
+            { timePhase: 'Morning', title: 'System Health Check', description: 'Review monitoring dashboards (Prometheus/Grafana) for any overnight server spikes or pipeline failures.' },
+            { timePhase: 'Afternoon', title: 'Pipeline Automation', description: 'Write Jenkins scripts or GitHub Actions to automate the testing and deployment of new microservices.' },
+            { timePhase: 'Evening', title: 'Infrastructure Scaling', description: 'Configure Kubernetes auto-scaling rules and update Terraform states to provision new cloud resources safely.' }
+        ],
+        skillProgression: {
+            beginner: ["Linux Basics", "Git Commands", "Docker Basics", "Simple Bash Scripting"],
+            intermediate: ["CI/CD Platforms", "Kubernetes Administration", "Terraform", "Cloud Networking"],
+            advanced: ["Site Reliability Engineering", "Chaos Engineering", "Enterprise GitOps", "Zero-Downtime Deployments"]
+        },
+        salaryDetails: {
+            entry: '₹6-12 LPA', mid: '₹15-30 LPA', senior: '₹35-65+ LPA',
+            mncVsStartup: 'Startups require a "Jack-of-all-trades" DevOps to build from scratch. MNCs have strictly defined Platform Engineering roles.',
+            specializationBonus: 'Certified Kubernetes Administrators (CKA) and AWS DevOps Pros are highly paid.'
+        },
+        futureDemand: {
+            level: 'Very High',
+            scope: 'Continuous integration and rapid deployment are now mandatory. DevOps engineers are the backbone of modern tech companies.',
+            aiImpact: 'AI will assist in writing basic infrastructure code and predicting server outages, but complex orchestration still requires human oversight.'
+        },
+        topCompanies: ["GitLab", "HashiCorp", "AWS", "Netflix", "Atlassian", "Fintech Unicorns"],
+        personalityTraits: ["Automation-Obsessed", "Systematic Problem Solver", "Calm in Crises"],
+        certifications: ["Docker Certified Associate", "AWS Certified DevOps Engineer", "CKA"],
+        workFlexibility: { remote: 'Excellent', freelance: 'Good (Consulting)' },
+        relatedCareers: ["Cloud Architect", "Software Engineering", "Cyber Security"]
     },
     {
         id: 105, title: 'IoT Developer', category: 'tech', icon: 'cpu', color: '#6366F1',
@@ -126,7 +276,32 @@ export const careers = [
             "Innovation Playground: Constantly experiment with new sensors and communication tech.",
             "Huge Impact: Improve efficiency and sustainability through connected technology."
         ],
-        industriesHiring: ["Manufacturing & Industry 4.0","Consumer Electronics","Automotive","Smart Home/City","Healthcare"]
+        industriesHiring: ["Manufacturing & Industry 4.0","Consumer Electronics","Automotive","Smart Home/City","Healthcare"],
+        dayInTheLife: [
+            { timePhase: 'Morning', title: 'Hardware Diagnostics', description: 'Test physical sensors (temperature/motion) connected to ESP32s or Raspberry Pis for accurate data transmission.' },
+            { timePhase: 'Afternoon', title: 'Protocol Programming', description: 'Write low-level C++ code to optimize MQTT telemetry messaging and reduce battery consumption on edge devices.' },
+            { timePhase: 'Evening', title: 'Cloud Integration', description: 'Connect the smart devices to AWS IoT Core and verify the data pipeline is routing analytics correctly.' }
+        ],
+        skillProgression: {
+            beginner: ["C/C++", "Basic Electronics", "Arduino/Raspberry Pi", "Serial Communication"],
+            intermediate: ["MQTT/CoAP Protocols", "RTOS (FreeRTOS)", "PCB Design Basics", "Edge Computing"],
+            advanced: ["Custom IoT Architecture", "Hardware Security", "Machine Learning on Edge", "Low Power WAN (LoRa)"]
+        },
+        salaryDetails: {
+            entry: '₹5-9 LPA', mid: '₹12-22 LPA', senior: '₹25-45+ LPA',
+            mncVsStartup: 'Manufacturing MNCs (Siemens/Bosch) offer immense stability. Startups in Smart Home/Agritech offer higher risk/reward.',
+            specializationBonus: 'Developers who understand BOTH hardware constraints and cloud architecture are extremely rare and well-paid.'
+        },
+        futureDemand: {
+            level: 'High',
+            scope: 'Smart homes, industrial automation (Industry 4.0), and smart cities ensure continuous growth for IoT experts.',
+            aiImpact: 'AI on the edge (TinyML) is revolutionizing IoT. Devices are becoming smart enough to process data locally without cloud.'
+        },
+        topCompanies: ["Bosch", "Siemens", "Intel", "Cisco", "Smart Home Startups", "Automotive (Tesla/Ather)"],
+        personalityTraits: ["Hands-On Tinkerers", "Detail-Oriented", "Resource Conscious"],
+        certifications: ["AWS Certified IoT Specialty", "Cisco IoT Certifications"],
+        workFlexibility: { remote: 'Moderate (Requires Hardware Setup)', freelance: 'Good' },
+        relatedCareers: ["Embedded Engineer", "Hardware Engineer", "Cloud Architect"]
     },
     {
         id: 106, title: 'AR/VR Developer', category: 'tech', icon: 'glasses', color: '#EC4899',
@@ -143,7 +318,32 @@ export const careers = [
             "Exciting Hardware: Work with the newest VR headsets and AR glasses every day.",
             "High Growth: From gaming to surgery, every field is adopting AR/VR technology."
         ],
-        industriesHiring: ["Entertainment","Education & Training","Real Estate","Healthcare","Retail"]
+        industriesHiring: ["Entertainment","Education & Training","Real Estate","Healthcare","Retail"],
+        dayInTheLife: [
+            { timePhase: 'Morning', title: 'Spatial Prototyping', description: 'Sketch out 3D UI interactions for a new VR training module and discuss comfort mechanics with designers.' },
+            { timePhase: 'Afternoon', title: 'Engine Integration', description: 'Import 3D models into Unity, apply appropriate physics/lighting, and script hand-tracking interactions using C#.' },
+            { timePhase: 'Evening', title: 'On-Device Testing', description: 'Put on the Meta Quest or HoloLens to test stereoscopic rendering, identify motion sickness triggers, and optimize framerates.' }
+        ],
+        skillProgression: {
+            beginner: ["C# & Unity / C++ & Unreal", "3D Math", "Basic UI/UX", "Scene Lighting"],
+            intermediate: ["Spatial Audio", "Hand & Eye Tracking SDKs", "Performance Profiling", "Shader Programming"],
+            advanced: ["Custom Rendering Pipelines", "Multi-user Synchronization", "Computer Vision Integration", "Mixed Reality Blending"]
+        },
+        salaryDetails: {
+            entry: '₹5-10 LPA', mid: '₹12-25 LPA', senior: '₹30-50+ LPA',
+            mncVsStartup: 'Meta and Apple pay top dollar for spatial computing experts. Specialized remote agencies focus on B2B training apps.',
+            specializationBonus: 'Deep expertise in Apple VisionOS or Unreal Engine 5 highly boosts starting salaries.'
+        },
+        futureDemand: {
+            level: 'Moderate (High Future Potential)',
+            scope: 'Mainstream adoption is slow but steady. Massive enterprise demand exists in medical, military, and industrial training simulations.',
+            aiImpact: 'Generative AI is drastically speeding up the creation of 3D assets, allowing small teams to build expansive virtual worlds.'
+        },
+        topCompanies: ["Meta (Oculus)", "Apple", "HTC", "Medical Simulation Firms", "Architectural Visualization Companies"],
+        personalityTraits: ["Highly Visual", "Empathetic (to user comfort)", "Experimental"],
+        certifications: ["Unity VR Developer", "Unreal Engine Technical Art"],
+        workFlexibility: { remote: 'Good', freelance: 'Excellent' },
+        relatedCareers: ["Game Developer", "UI/UX Designer", "3D Modeler"]
     },
     {
         id: 107, title: 'Network Engineer', category: 'tech', icon: 'wifi', color: '#3B82F6',
@@ -160,7 +360,32 @@ export const careers = [
             "High Job Security: Networks are vital for every single modern organization.",
             "Work with Cisco & Juniper: Master the high-end hardware that runs the world's data centers."
         ],
-        industriesHiring: ["Telecommunications","Data Centers","ISPs","Large Enterprises","Government"]
+        industriesHiring: ["Telecommunications","Data Centers","ISPs","Large Enterprises","Government"],
+        dayInTheLife: [
+            { timePhase: 'Morning', title: 'Traffic Analysis', description: 'Monitor enterprise bandwidth usage, analyze packet captures in Wireshark, and resolve any overnight branch connectivity drops.' },
+            { timePhase: 'Afternoon', title: 'Infrastructure Configuration', description: 'Configure new VLANs, update BGP routing tables, and deploy SD-WAN policies to branch offices.' },
+            { timePhase: 'Evening', title: 'Hardware Maintenance', description: 'Schedule downtime for firmware upgrades on core Cisco switches and update VPN access logs.' }
+        ],
+        skillProgression: {
+            beginner: ["OSI Model", "Subnetting", "Basic Switch Config", "Ethernet/Fiber Cabling"],
+            intermediate: ["BGP/OSPF Routing", "Firewall Rules (Palo Alto)", "VPN Tunnels", "Wireshark Analysis"],
+            advanced: ["SD-WAN Architecture", "Cloud Networking (AWS VPC)", "Network Automation (Python)", "Datacenter Design"]
+        },
+        salaryDetails: {
+            entry: '₹3-6 LPA', mid: '₹8-18 LPA', senior: '₹20-40+ LPA',
+            mncVsStartup: 'ISPs and massive Datacenters offer the highest pay. Startups usually rely entirely on cloud-managed networking (like Meraki) requiring less deep CLI knowledge.',
+            specializationBonus: 'Moving from traditional on-prem networking to Cloud Networking or Network Automation triples salary potential.'
+        },
+        futureDemand: {
+            level: 'Moderate',
+            scope: 'Physical networking jobs are consolidating, but the need for SD-WAN and Cloud networking experts is skyrocketing.',
+            aiImpact: 'AI-driven networking tools (AIOps) are automating troubleshooting and finding root causes of drops in milliseconds.'
+        },
+        topCompanies: ["Cisco", "Juniper Networks", "AT&T", "Equinix Data Centers", "Jio", "Airtel"],
+        personalityTraits: ["Meticulous", "Methodical Troubleshooter", "Cool Under Pressure"],
+        certifications: ["CCNA / CCNP", "CCIE (Expert Level)", "AWS Advanced Networking Specialty"],
+        workFlexibility: { remote: 'Moderate (Often requires datacenter visits)', freelance: 'Low' },
+        relatedCareers: ["Cyber Security", "Cloud Architect", "Systems Administrator"]
     },
     {
         id: 108, title: 'Database Administrator', category: 'tech', icon: 'database', color: '#F97316',
@@ -177,7 +402,32 @@ export const careers = [
             "Learn Huge Scalability: Work with systems that handle billions of records daily.",
             "Logical Challenge: Design complex data structures that power massive platforms."
         ],
-        industriesHiring: ["Finance","Healthcare","E-commerce","Government","Tech"]
+        industriesHiring: ["Finance","Healthcare","E-commerce","Government","Tech"],
+        dayInTheLife: [
+            { timePhase: 'Morning', title: 'Performance Tuning', description: 'Analyze slow query logs from the night before, optimize SQL indexes, and ensure all automated backups completed successfully.' },
+            { timePhase: 'Afternoon', title: 'Schema Design & Migration', description: 'Work with backend engineers to design new database tables, ensuring normalization and planning zero-downtime data migrations.' },
+            { timePhase: 'Evening', title: 'Security Audits', description: 'Review database access logs, revoke unnecessary permissions, and encrypt sensitive PII (Personally Identifiable Information).' }
+        ],
+        skillProgression: {
+            beginner: ["SQL & Relational DBs", "Basic Server Admin", "Data Export/Import", "Table Design"],
+            intermediate: ["Performance Tuning", "NoSQL (MongoDB)", "Automated Backups", "Database Clustering/Replication"],
+            advanced: ["Cloud Database Architecture", "Disaster Recovery", "Big Data Pipelines", "Data Warehousing"]
+        },
+        salaryDetails: {
+            entry: '₹5-9 LPA', mid: '₹12-22 LPA', senior: '₹25-45+ LPA',
+            mncVsStartup: 'MNCs and Banks treat DBAs as mission-critical staff for stability. Startups expect DBAs to also act as Data Engineers (ETL pipelines).',
+            specializationBonus: 'Expertise in modern Cloud DBs (AWS Aurora, Snowflake) or Big Data (Hadoop) pushes salaries much higher.'
+        },
+        futureDemand: {
+            level: 'Moderate',
+            scope: 'The amount of data generated globally is doubling every two years. DBAs are evolving into Data Engineers to handle this scale.',
+            aiImpact: 'AI helps write optimal SQL queries automatically, but human DBAs remain essential for architectural decisions and data security.'
+        },
+        topCompanies: ["Oracle", "Microsoft", "MongoDB", "Banks", "Healthcare Data Providers"],
+        personalityTraits: ["Highly Organized", "Meticulous", "Systems Thinker"],
+        certifications: ["Oracle Database Certification", "AWS Certified Database Specialty"],
+        workFlexibility: { remote: 'Good', freelance: 'Moderate (Requires high trust)' },
+        relatedCareers: ["Data Scientist", "DevOps Engineer", "Cloud Architect"]
     },
     {
         id: 109, title: 'QA & Test Engineer', category: 'tech', icon: 'checkcircle', color: '#14B8A6',
@@ -194,7 +444,32 @@ export const careers = [
             "Learn Diverse Tech: Work with various programming languages, tools, and platforms.",
             "Bridge to Development: Often a stepping stone to a full-fledged developer role."
         ],
-        industriesHiring: ["Software & IT","Game Development","Banking","Healthcare ERP","Consumer Apps"]
+        industriesHiring: ["Software & IT","Game Development","Banking","Healthcare ERP","Consumer Apps"],
+        dayInTheLife: [
+            { timePhase: 'Morning', title: 'Test Execution', description: 'Run automated regression test suites on the staging branch, log defects in Jira, and assign them to the correct developers.' },
+            { timePhase: 'Afternoon', title: 'Scripting & Automation', description: 'Write new UI automation scripts using Cypress or Selenium for newly developed features, and API tests using Postman.' },
+            { timePhase: 'Evening', title: 'Quality Sign-off', description: 'Review bug fixes, verify the staging environment is stable, and provide the final sign-off for a production release.' }
+        ],
+        skillProgression: {
+            beginner: ["Manual Testing Basics", "Writing Test Cases", "Jira/Bug Tracking", "Basic HTML/CSS"],
+            intermediate: ["Selenium/Cypress", "API Testing (Postman)", "SQL for Testing", "Version Control (Git)"],
+            advanced: ["CI/CD Pipeline Integration", "Performance Testing (JMeter)", "Security Testing (OWASP)", "Test Framework Architecture"]
+        },
+        salaryDetails: {
+            entry: '₹4-8 LPA', mid: '₹10-20 LPA', senior: '₹25-40+ LPA',
+            mncVsStartup: 'Service-based MNCs hire manual testers in bulk at lower pay. Product startups hire highly-paid SDETs (Software Development Engineers in Test).',
+            specializationBonus: 'Transitioning from manual QA to full-stack Test Automation easily doubles or triples starting salaries.'
+        },
+        futureDemand: {
+            level: 'Moderate (High for Automation)',
+            scope: 'Manual QA roles are rapidly vanishing. Automated QA (SDET) roles are booming as companies implement continuous delivery.',
+            aiImpact: 'AI testing tools can now auto-generate simple test scripts, pushing QA engineers to focus on complex edge cases and test strategy.'
+        },
+        topCompanies: ["TCS", "Infosys", "IBM", "BrowserStack", "QualityKiosk", "Product Startups"],
+        personalityTraits: ["Extremely Detail-Oriented", "Patient", "Curious (to find break-points)"],
+        certifications: ["ISTQB Foundation", "Certified Selenium Professional"],
+        workFlexibility: { remote: 'Excellent', freelance: 'Good (Crowdtesting platforms)' },
+        relatedCareers: ["Software Engineering", "Product Manager", "DevOps Engineer"]
     },
     {
         id: 2, title: 'Medicine & Surgery', category: 'medical', icon: 'stethoscope', color: '#06B6D4',
