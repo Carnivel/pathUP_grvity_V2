@@ -4,11 +4,7 @@ import { careers } from '../data/careersData';
 import { examsData } from '../data/examsData';
 
 export default async function sitemap() {
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
-    if (!baseUrl) {
-        throw new Error("NEXT_PUBLIC_SITE_URL is required to dynamically generate a valid sitemap.xml");
-    }
-
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000'));
     // Fetch dynamic real college slugs
     const response = await getColleges();
     if (!response || !response.results) throw new Error("Invalid API response format");

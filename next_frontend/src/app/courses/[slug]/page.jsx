@@ -22,10 +22,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }) {
     const { slug } = await params;
 
-    if (!process.env.NEXT_PUBLIC_SITE_URL) {
-        throw new Error("NEXT_PUBLIC_SITE_URL is required but undefined");
-    }
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000'));
 
     const course = courses.find((c) => c.id.toString() === slug);
 
@@ -57,11 +54,7 @@ const CourseDetails = async ({ params }) => {
         notFound();
     }
 
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
-    if (!siteUrl) {
-        throw new Error("NEXT_PUBLIC_SITE_URL is strictly required to generate absolute JSON-LD URLs.");
-    }
-
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000'));
     // JSON-LD Schema explicitly requested for rich results
     const jsonLd = {
         '@context': 'https://schema.org',

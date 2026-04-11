@@ -2,13 +2,9 @@ import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-if (!process.env.NEXT_PUBLIC_SITE_URL) {
-  throw new Error("NEXT_PUBLIC_SITE_URL is required to generate absolute production URLs for metadataBase.");
-}
-
 // Configure production metadataBase to ensure canonicals and OpenGraph images resolve to absolute URLs
 export const metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000'))),
   title: {
     default: "PathUp - Find Your Dream College",
     template: "%s | PathUp", // Applies "My Page | PathUp" automatically to children
