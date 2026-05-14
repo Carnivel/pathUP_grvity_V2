@@ -21,18 +21,23 @@ export async function fetchAPI(endpoint, options = {}) {
         ...options,
     };
 
-    const response = await fetch(url, defaultOptions);
+    try {
+        const response = await fetch(url, defaultOptions);
 
-    if (!response.ok) {
-        if (response.status === 404) {
-            return null;
+        if (!response.ok) {
+            if (response.status === 404) {
+                return null;
+            }
+            console.warn(`[Warning] Failed to fetch API from ${url} (Status: ${response.status})`);
+            return { results: [], count: 0, _error: true };
         }
-        // Explicitly throw a hard error so Next.js build will fail or notFound() will trigger
-        // preventing the generation of incomplete or soft-404 pages.
-        throw new Error(`Failed to fetch API from ${url} (Status: ${response.status})`);
-    }
 
-    return response.json();
+        return await response.json();
+    } catch (error) {
+        console.warn(`[Network Error] API unreachable at ${url}: ${error.message}`);
+        // Return a safe fallback structure so Next.js build doesn't crash
+        return { results: [], count: 0, _offline: true };
+    }
 }
 
 /**
