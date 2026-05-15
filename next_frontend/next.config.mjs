@@ -11,6 +11,11 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: '*.ngrok-free.dev',
+        pathname: '/**', // Allow media through ngrok
+      },
+      {
+        protocol: 'https',
         hostname: 'images.unsplash.com',
         pathname: '/**',
       },

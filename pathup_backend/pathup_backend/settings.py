@@ -36,7 +36,9 @@ DEBUG = True
 ALLOWED_HOSTS = ["*"]
 
 CSRF_TRUSTED_ORIGINS = [
+    'https://proposable-catrina-unsoundly.ngrok-free.dev',
     'https://*.ngrok-free.app',
+    'https://*.ngrok-free.dev',
     'https://*.ngrok.io',
 ]
 
