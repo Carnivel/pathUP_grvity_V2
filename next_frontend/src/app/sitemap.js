@@ -3,26 +3,29 @@ import { courses } from '../data/coursesData';
 import { careers } from '../data/careersData';
 import { examsData } from '../data/examsData';
 
+// Force dynamic rendering — sitemap depends on live API data
+export const dynamic = 'force-dynamic';
+
 export default async function sitemap() {
     const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000'));
-    // Fetch dynamic real college slugs
-    const response = await getColleges();
-    if (!response || !response.results) throw new Error("Invalid API response format");
-    const colleges = response.results;
-    if (colleges.length === 0) throw new Error("API returned empty records");
 
-    const collegeSlugs = colleges.map(c => {
-        if (!c.slug) throw new Error(`Missing slug for college in sitemap generation (ID: ${c.id})`);
-        return c.slug;
-    });
-
-    // Map Dynamic DB Collections
-    const collegeEntries = collegeSlugs.map((slug) => ({
-        url: `${baseUrl}/colleges/${slug}`,
-        lastModified: new Date(),
-        changeFrequency: 'weekly',
-        priority: 0.8,
-    }));
+    // Fetch dynamic college slugs — gracefully handle API failures
+    let collegeEntries = [];
+    try {
+        const response = await getColleges();
+        if (response && response.results && response.results.length > 0) {
+            collegeEntries = response.results
+                .filter(c => c.slug)
+                .map((c) => ({
+                    url: `${baseUrl}/colleges/${c.slug}`,
+                    lastModified: new Date(),
+                    changeFrequency: 'weekly',
+                    priority: 0.8,
+                }));
+        }
+    } catch (error) {
+        console.warn('[Sitemap] Could not fetch colleges from API, skipping dynamic entries:', error.message);
+    }
 
     // Map Static Collections (can be migrated to DB queries later without changing sitemap logic)
     const courseEntries = courses.map((course) => ({
