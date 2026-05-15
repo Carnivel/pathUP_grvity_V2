@@ -6,7 +6,7 @@
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 if (!API_BASE_URL) {
-    throw new Error("Critical Build Setup Error: NEXT_PUBLIC_API_URL is not defined in the environment.");
+    console.warn("⚠️ WARNING: NEXT_PUBLIC_API_URL is not defined. API calls will use fallback mock data.");
 }
 
 export async function fetchAPI(endpoint, options = {}) {
