@@ -33,8 +33,12 @@ SECRET_KEY = 'django-insecure-+%_o)s!!542i!il5#z5d574qa&@ug8eb)y!ubdgfw(s-rkpf_r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ["*"]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.ngrok-free.app',
+    'https://*.ngrok.io',
+]
 
 # Application definition
 
@@ -90,8 +94,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'pathup_db',
-        'USER': 'root',
-        'PASSWORD': '2006',
+        'USER': 'pathup_user',
+        'PASSWORD': 'StrongPassword123!',
         'HOST': 'localhost',
     }
 }
