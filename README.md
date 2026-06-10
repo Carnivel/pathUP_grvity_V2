@@ -100,87 +100,8 @@ Meilisearch   Celery
 
 * Ubuntu VPS
 
----
 
-## 📂 Project Structure
 
-```text
-PathUp/
-│
-├── next_frontend/
-│
-├── pathup_backend/
-│
-├── docs/
-│
-├── run website.bat
-│
-└── README.md
-```
-
----
-
-## 🚀 Quick Start
-
-### Prerequisites
-
-Install the following:
-
-* Python 3.11+
-* Node.js
-* MySQL
-* Redis (or Memurai on Windows)
-* Meilisearch
-
----
-
-### Frontend Setup
-
-```bash
-cd next_frontend
-npm install
-npm run dev
-```
-
-Frontend runs on:
-
-```text
-http://localhost:3000
-```
-
----
-
-### Backend Setup
-
-```bash
-cd pathup_backend
-
-python -m venv venv
-
-venv\Scripts\activate
-
-pip install -r requirements.txt
-```
-
-Apply migrations:
-
-```bash
-python manage.py migrate
-```
-
-Start development server:
-
-```bash
-python manage.py runserver
-```
-
-Backend runs on:
-
-```text
-http://localhost:8000
-```
-
----
 
 ## 🔍 Search System
 
