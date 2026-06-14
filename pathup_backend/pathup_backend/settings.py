@@ -351,3 +351,9 @@ JAZZMIN_UI_TWEAKS = {
         "success": "btn-success",
     },
 }
+#verify datatype
+SECURE_CONTENT_TYPE_NOSNIFF = True
+#block embbeded
+X_FRAME_OPTION ='DENY'
+
+SECURE_REFERRER_POLICY = 'strict-orgin-when-cross-origin'
