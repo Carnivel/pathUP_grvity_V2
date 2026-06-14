@@ -357,3 +357,5 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTION ='DENY'
 #prevent leakage from the url 
 SECURE_REFERRER_POLICY = 'strict-orgin-when-cross-origin'
+# Trust Cloudflare's HTTPS 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
