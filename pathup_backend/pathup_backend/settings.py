@@ -355,5 +355,5 @@ JAZZMIN_UI_TWEAKS = {
 SECURE_CONTENT_TYPE_NOSNIFF = True
 #block embbeded
 X_FRAME_OPTION ='DENY'
-
+#prevent leakage from the url 
 SECURE_REFERRER_POLICY = 'strict-orgin-when-cross-origin'
