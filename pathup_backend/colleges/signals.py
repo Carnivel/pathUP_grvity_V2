@@ -1,4 +1,5 @@
 import logging
+import threading
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.core.cache import cache
@@ -21,10 +22,9 @@ def invalidate_cache(slug=None):
         cache.clear()
 
 
-def _sync_college_to_meilisearch(college_ids):
+def _sync_college_to_meilisearch_thread(college_ids):
     """
-    Try Celery first; if Celery/Redis broker is down, sync directly (synchronous).
-    This guarantees Meilisearch stays in sync regardless of Celery's state.
+    Background worker thread to handle sync logic.
     """
     try:
         from .tasks import bulk_update_colleges_in_meilisearch
@@ -48,9 +48,17 @@ def _sync_college_to_meilisearch(college_ids):
             logger.error(f"Direct Meilisearch sync failed: {e}")
 
 
-def _remove_college_from_meilisearch(college_id):
+def _sync_college_to_meilisearch(college_ids):
     """
-    Try Celery first; if unavailable, remove directly from Meilisearch.
+    Spawns a background thread to prevent Celery/Meilisearch connection delays
+    from blocking the main Django request-response thread (e.g. during saves).
+    """
+    threading.Thread(target=_sync_college_to_meilisearch_thread, args=(college_ids,), daemon=True).start()
+
+
+def _remove_college_from_meilisearch_thread(college_id):
+    """
+    Background worker thread to handle removal logic.
     """
     try:
         from .tasks import remove_college_from_meilisearch
@@ -64,6 +72,14 @@ def _remove_college_from_meilisearch(college_id):
             index.delete_document(str(college_id))
         except Exception as e:
             logger.error(f"Direct Meilisearch removal failed: {e}")
+
+
+def _remove_college_from_meilisearch(college_id):
+    """
+    Spawns a background thread to prevent Celery/Meilisearch connection delays
+    from blocking the main Django request-response thread.
+    """
+    threading.Thread(target=_remove_college_from_meilisearch_thread, args=(college_id,), daemon=True).start()
 
 
 # ---- Cache & Search Signals ----
