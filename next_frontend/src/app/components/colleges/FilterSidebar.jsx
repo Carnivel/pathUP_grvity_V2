@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Search, MapPin, Building2, Filter, GraduationCap, ChevronDown, Square, X, SlidersHorizontal } from 'lucide-react';
-import { collegeCategories, coursePrograms, states, feeRanges } from '../../data/collegesData';
+import { collegeCategories, coursePrograms, states, feeRanges } from '../../../data/collegesData';
 
 export default function FilterSidebar({ 
     name, state, city, stream, course, type, fee 
