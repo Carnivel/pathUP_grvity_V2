@@ -928,7 +928,9 @@
     }
 
     .mobile-filter-btn {
-        display: none; /* Replaced by floating filter bar */
+        display: flex;
+        width: 100%;
+        margin-bottom: var(--spacing-lg);
     }
 
     .filter-sidebar {
@@ -1045,5 +1047,12 @@
     .btn-compare-action {
         padding: 0.6rem 1rem;
         font-size: 0.9rem;
+    }
+}
+
+@media (min-width: 993px) {
+    .mobile-filter-btn-container,
+    .mobile-close-btn {
+        display: none !important;
     }
 }

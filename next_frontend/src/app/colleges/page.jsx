@@ -6,6 +6,7 @@ import { getColleges } from '../../lib/api';
 import { collegeCategories, coursePrograms, states, feeRanges } from '../../data/collegesData';
 import PopularSearches from '../components/colleges/PopularSearches';
 import LoadMoreColleges from '../components/colleges/LoadMoreColleges';
+import FilterSidebar from '../components/colleges/FilterSidebar';
 import './CollegeFinder.css'; // Re-use the existing CSS 
 
 export const metadata = {
@@ -64,104 +65,16 @@ export default async function CollegesPage({ searchParams }) {
 
                 <div className="container">
                     <div className="finder-layout">
-                        {/* LEFT SIDEBAR: Filters (Form-based for Server Component) */}
-                        <aside className="filter-sidebar desktop-only">
-                            <form action="/colleges" method="GET">
-                                <div className="sidebar-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', paddingBottom: '1rem', borderBottom: '1px solid var(--color-border)' }}>
-                                    <h3 style={{ margin: 0 }}>Filters</h3>
-                                    <Link href="/colleges" className="btn-clear-filters" style={{ textDecoration: 'none' }}>
-                                        Clear All
-                                    </Link>
-                                    <button type="submit" className="btn-primary" style={{ padding: '5px 10px', fontSize: '12px' }}>Apply</button>
-                                </div>
-
-                                {/* Search */}
-                                <div className="filter-group">
-                                    <h3>Search</h3>
-                                    <div className="search-input-wrapper">
-                                        <Search className="icon" size={18} />
-                                        <input
-                                            type="text"
-                                            name="name"
-                                            defaultValue={name || ''}
-                                            placeholder="Colleges, cities..."
-                                        />
-                                    </div>
-                                </div>
-
-                                {/* Stream / Category */}
-                                <div className="filter-group">
-                                    <h3>Course Stream</h3>
-                                    <div className="custom-select-wrapper">
-                                        <GraduationCap size={16} className="select-icon" />
-                                        <select name="stream" defaultValue={stream || 'all'} className="filter-select">
-                                            <option value="all">All Streams</option>
-                                            {collegeCategories.map(cat => (
-                                                <option key={cat.id} value={cat.id}>{cat.label}</option>
-                                            ))}
-                                        </select>
-                                        <ChevronDown size={16} className="select-arrow" />
-                                    </div>
-                                </div>
-
-                                {/* State / Location */}
-                                <div className="filter-group">
-                                    <h3>State</h3>
-                                    <div className="custom-select-wrapper">
-                                        <MapPin size={16} className="select-icon" />
-                                        <select name="state" defaultValue={state || 'All States'} className="filter-select">
-                                            <option value="All States">All States</option>
-                                            {states.map(s => (
-                                                <option key={s} value={s}>{s}</option>
-                                            ))}
-                                        </select>
-                                        <ChevronDown size={16} className="select-arrow" />
-                                    </div>
-                                </div>
-
-                                {/* Course / Degree */}
-                                <div className="filter-group">
-                                    <h3>Course Level</h3>
-                                    <div className="custom-select-wrapper">
-                                        <Filter size={16} className="select-icon" />
-                                        <select name="course" defaultValue={course || 'all'} className="filter-select">
-                                            {coursePrograms.map(pg => (
-                                                <option key={pg.id} value={pg.id}>{pg.label}</option>
-                                            ))}
-                                        </select>
-                                        <ChevronDown size={16} className="select-arrow" />
-                                    </div>
-                                </div>
-
-                                {/* Ownership Type */}
-                                <div className="filter-group">
-                                    <h3>Ownership</h3>
-                                    <div className="custom-select-wrapper">
-                                        <Building2 size={16} className="select-icon" />
-                                        <select name="type" defaultValue={type || 'All'} className="filter-select">
-                                            <option value="All">All Types</option>
-                                            <option value="Private">Private</option>
-                                            <option value="Public/Government">Public/Government</option>
-                                        </select>
-                                        <ChevronDown size={16} className="select-arrow" />
-                                    </div>
-                                </div>
-
-                                {/* 1st Year Fees */}
-                                <div className="filter-group">
-                                    <h3>Annual Fees</h3>
-                                    <div className="custom-select-wrapper">
-                                        <Square size={16} className="select-icon" />
-                                        <select name="fee" defaultValue={fee || 'all'} className="filter-select">
-                                            {feeRanges.map(fr => (
-                                                <option key={fr.id} value={fr.id}>{fr.label}</option>
-                                            ))}
-                                        </select>
-                                        <ChevronDown size={16} className="select-arrow" />
-                                    </div>
-                                </div>
-                            </form>
-                        </aside>
+                        {/* LEFT SIDEBAR: Filters (Client Component for Mobile Toggle) */}
+                        <FilterSidebar 
+                            name={name}
+                            state={state}
+                            city={city}
+                            stream={stream}
+                            course={course}
+                            type={type}
+                            fee={fee}
+                        />
 
                         {/* RIGHT MAIN CONTENT: Results */}
                         <main className="finder-results">
