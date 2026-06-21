@@ -5,9 +5,15 @@
 /* Hero Section Background Patterns */
 .hero {
     position: relative;
-    padding: var(--spacing-4xl) 0;
+    padding: var(--spacing-2xl) 0;
     overflow: hidden;
     background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+@media (min-width: 768px) {
+    .hero {
+        padding: var(--spacing-4xl) 0;
+    }
 }
 
 /* Elegant Grid Pattern Overlay */
@@ -133,10 +139,16 @@
 .hero-container {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--spacing-4xl);
+    gap: var(--spacing-xl);
     align-items: center;
     position: relative;
     z-index: 1;
+}
+
+@media (min-width: 768px) {
+    .hero-container {
+        gap: var(--spacing-4xl);
+    }
 }
 
 @media (min-width: 1024px) {
@@ -177,16 +189,21 @@
 }
 
 .hero-title {
-    font-size: 3.5rem;
     margin-bottom: var(--spacing-md);
     letter-spacing: -0.02em;
+    line-height: 1.1;
 }
 
 .hero-description {
-    font-size: 1.125rem;
     color: var(--color-text-secondary);
-    margin-bottom: var(--spacing-2xl);
+    margin-bottom: var(--spacing-xl);
     max-width: 500px;
+}
+
+@media (min-width: 768px) {
+    .hero-description {
+        margin-bottom: var(--spacing-2xl);
+    }
 }
 
 .search-bar {
@@ -224,6 +241,56 @@
 
 .search-btn {
     padding: 0.75rem 2rem;
+}
+
+/* Quick Link Chips */
+.quick-links-container {
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.quick-link-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(79, 70, 229, 0.15);
+    border-radius: var(--radius-full, 9999px);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text-primary, #333);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    white-space: nowrap;
+}
+
+.quick-link-chip .chip-icon {
+    opacity: 0.75;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.quick-link-chip:hover, .quick-link-chip:active {
+    background-color: var(--color-primary, #4f46e5);
+    color: white;
+    border-color: var(--color-primary, #4f46e5);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(79, 70, 229, 0.2);
+}
+
+.quick-link-chip:hover .chip-icon {
+    transform: scale(1.1);
+    opacity: 1;
 }
 
 /* Elegant Quick Action Buttons */

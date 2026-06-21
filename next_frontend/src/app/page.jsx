@@ -66,11 +66,11 @@ const Home = () => {
                                 <Sparkles size={16} className="tagline-icon" />
                                 <span>Kerala's Smartest College Discovery Platform</span>
                             </div>
-                            <h1 className="hero-title">
+                            <h1 className="hero-title text-4xl md:text-6xl lg:text-7xl font-bold">
                                 Choose the Right Course. <br />
                                 <span className="text-gradient">Choose the Right Future</span>
                             </h1>
-                            <p className="hero-description">
+                            <p className="hero-description text-base md:text-xl lg:text-2xl mt-4">
                                 Discover top-ranked colleges, compare courses, and get personalized admission guidance seamlessly.
                             </p>
 
@@ -83,6 +83,31 @@ const Home = () => {
                                 />
                                 <button type="submit" className="btn-primary search-btn">Search</button>
                             </form>
+
+                            {/* Quick Links Chips */}
+                            <div className="quick-links-container overflow-x-auto scrollbar-hide w-full max-w-[600px]">
+                                <div className="flex gap-2 whitespace-nowrap pb-2">
+                                    {[
+                                        { label: 'B.Tech', icon: Settings, courseId: 'B.Tech' },
+                                        { label: 'Nursing', icon: HeartPulse, courseId: 'B.Sc Nursing' },
+                                        { label: 'BBA', icon: Briefcase, courseId: 'BBA' },
+                                        { label: 'BCA', icon: Monitor, courseId: 'BCA' },
+                                        { label: 'More', icon: ArrowRight, route: '/colleges' }
+                                    ].map(chip => {
+                                        const IconComponent = chip.icon;
+                                        return (
+                                            <button 
+                                                key={chip.label} 
+                                                className="quick-link-chip"
+                                                onClick={() => router.push(chip.route || `/colleges?course=${chip.courseId}`)}
+                                            >
+                                                <IconComponent size={14} className="chip-icon" />
+                                                <span>{chip.label}</span>
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+                            </div>
 
                             <div className="hero-quick-actions">
                                 <Link href="/colleges" className="btn-elegant-link">
