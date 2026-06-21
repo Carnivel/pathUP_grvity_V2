@@ -16,7 +16,7 @@ export const coursePrograms = [
     { id: 'BCA', label: 'BCA' },
     { id: 'B.Com', label: 'B.Com' },
     { id: 'B.Tech', label: 'B.Tech' },
-    { id: 'B.Sc Nursing', label: 'Nursing' },
+    { id: 'BSc Nursing', label: 'Nursing' },
     { id: 'MBA', label: 'MBA' },
     { id: 'MBBS', label: 'MBBS' },
     { id: 'B.A', label: 'B.A' },

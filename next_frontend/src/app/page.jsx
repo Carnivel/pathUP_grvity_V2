@@ -89,7 +89,7 @@ const Home = () => {
                                 <div className="flex gap-2 whitespace-nowrap pb-2">
                                     {[
                                         { label: 'B.Tech', icon: Settings, courseId: 'B.Tech' },
-                                        { label: 'Nursing', icon: HeartPulse, courseId: 'B.Sc Nursing' },
+                                        { label: 'Nursing', icon: HeartPulse, courseId: 'BSc Nursing' },
                                         { label: 'BBA', icon: Briefcase, courseId: 'BBA' },
                                         { label: 'BCA', icon: Monitor, courseId: 'BCA' },
                                         { label: 'More', icon: ArrowRight, route: '/colleges' }
