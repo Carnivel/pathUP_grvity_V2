@@ -1,6 +1,7 @@
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 // Configure production metadataBase to ensure canonicals and OpenGraph images resolve to absolute URLs
 export const metadata = {
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
           </main>
           <Footer />
         </div>
+        <SpeedInsights />
       </body>
     </html>
   );
